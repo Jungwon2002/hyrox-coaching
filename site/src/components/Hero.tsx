@@ -5,9 +5,13 @@ export default function Hero() {
   return (
     <>
       <section className="hero-dark" aria-label="소개">
+        {/* poster paints on the first frame so the cover is never blank while
+            the 14MB clip buffers — without it the element sits on its own ink
+            background and reads as a black screen for the first second or two */}
         <video
           className="hero-dark__video"
           src="assets/training.mp4"
+          poster="assets/hero-still.jpg"
           autoPlay
           muted
           loop
