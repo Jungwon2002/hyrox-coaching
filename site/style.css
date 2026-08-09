@@ -1026,50 +1026,13 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
    volt glow, but no colored left-edge accent. Cleaner, quieter, and
    visually distinct from the prose card above it while still belonging
    to the same glass vocabulary. */
+/* Mission — a purely transparent glass box whose only edge is the orbiting
+   volt/ink beam drawn by BorderBeamPanel. Surface, padding and radius are set
+   inline on the component (Tailwind utilities there would otherwise win over
+   this layer), so all that is left here is spacing and typography. The old
+   static gradient bloom is gone: the beam is now the light. */
 .coach__mission {
   margin-top: clamp(20px, 3vw, 28px);
-  position: relative;
-  z-index: 0;
-  background: rgba(16, 18, 16, 0.04);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  padding: clamp(28px, 4vw, 40px);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  overflow: hidden;
-}
-
-.coach__mission::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgba(255, 225, 0, 0.06) 25%,
-    transparent 50%,
-    rgba(255, 225, 0, 0.1) 60%,
-    transparent 75%,
-    rgba(255, 225, 0, 0.04) 100%
-  );
-  background-size: 300% 300%;
-  animation: coach-glow 8s ease-in-out infinite;
-}
-
-.coach__mission::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  box-shadow: inset 0 1px 0 rgba(16, 18, 16, 0.06);
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .coach__mission::before { animation: none; }
 }
 
 .coach__mission p {

@@ -1,5 +1,6 @@
 import { ThreeDPhotoCarousel, type CarouselItem } from "@/components/ui/3d-carousel";
 import { GradientShimmer, type GradientStop } from "@/components/ui/gradient-shimmer";
+import { BorderBeamPanel } from "@/components/ui/border-beam-panel";
 
 const shimmerBrand: GradientStop[] = [
   { color: "#101210", position: 0 },
@@ -83,7 +84,28 @@ export default function Coach() {
       </div>
 
       <div className="shell">
-        <aside className="coach__mission reveal">
+        {/* The panel ships an opaque dark surface and its own padding as Tailwind
+            utilities. Inline style beats those, so the box stays purely
+            transparent glass and only the orbiting beam draws the border. */}
+        <BorderBeamPanel
+          className="coach__mission reveal"
+          beams={2}
+          /* both comets stay in the volt family — a dark second comet reads as
+             a smudge rather than light on the paper-white ground */
+          colors={["#FFE100", "#FFF3A0"]}
+          thickness={2}
+          radius={20}
+          idleSpeed={30}
+          hoverSpeed={190}
+          glow
+          style={{
+            background: "transparent",
+            borderColor: "transparent",
+            padding: "clamp(28px, 4vw, 40px)",
+            WebkitBackdropFilter: "blur(12px)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
           <p>
             <strong>HYROX</strong>는 한국에서 빠르게 성장하고 있지만, 아직은 비교적
             새로운 스포츠입니다. 온라인에는 다양한 훈련 정보가 있지만, 체계적인
@@ -94,7 +116,7 @@ export default function Coach() {
             저는 우리나라 선수들이 더 체계적이고 효율적으로 훈련할 수 있도록
             돕고자 합니다.
           </p>
-        </aside>
+        </BorderBeamPanel>
       </div>
     </section>
   );
