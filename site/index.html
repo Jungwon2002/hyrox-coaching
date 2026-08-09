@@ -10,6 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- The hero <video> is built by React, so its poster would not start
+     downloading until the JS bundle had run — about 800ms in, leaving the
+     cover black until then. Preloading pulls it forward to first paint so the
+     still is already decoded by the time the hero mounts. -->
+<link rel="preload" as="image" href="/assets/hero-still.jpg" fetchpriority="high">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>

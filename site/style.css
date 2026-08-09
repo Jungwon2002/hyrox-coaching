@@ -202,6 +202,10 @@ section { padding: clamp(72px, 11vw, 132px) 0; }
   height: 100%;
   object-fit: cover;
   opacity: 0.5;
+  /* the still sits behind the element too, so the cover is never bare while
+     the poster decodes or the clip buffers. Absolute path (not relative) so
+     it resolves to the same URL the preload hint warms. */
+  background: url("/assets/hero-still.jpg") center / cover no-repeat var(--ink);
 }
 
 .hero-dark__scrim {
@@ -371,7 +375,10 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
     bottom: auto;
     object-fit: contain;
     opacity: 1;
-    background: var(--ink);
+    /* keep the still — a bare `background: var(--ink)` here would reset the
+       image set above. `contain` mirrors the object-fit so the placeholder
+       frames exactly like the footage that replaces it. */
+    background: url("/assets/hero-still.jpg") center / contain no-repeat var(--ink);
   }
 
   /* darkens steadily down the frame so the type sits in it rather than on it,

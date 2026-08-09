@@ -1,5 +1,9 @@
 import { InteractiveHoverButtonWide } from "@/components/ui/interactive-hover-button-wide";
 import { Highlight } from "@/components/ui/highlight";
+// imported rather than written as a path string so Vite emits one hashed copy
+// shared with style.css and the preload hint — a literal "assets/…" here would
+// ship a second, unhashed copy that the preload never warms
+import heroStill from "../../assets/hero-still.jpg";
 
 export default function Hero() {
   return (
@@ -11,7 +15,7 @@ export default function Hero() {
         <video
           className="hero-dark__video"
           src="assets/training.mp4"
-          poster="assets/hero-still.jpg"
+          poster={heroStill}
           autoPlay
           muted
           loop
