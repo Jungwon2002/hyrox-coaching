@@ -1,8 +1,10 @@
 [build]
   base    = "site"
   command = "npm run build"
-  publish = "site/dist"
+  # relative to base, so this resolves to site/dist
+  publish = "dist"
 
-# Vite 8 needs Node >=20.19; Netlify's default image is older than that
+# Pinned for reproducible builds. Vite 8 needs Node ^20.19 || >=22.12,
+# and pinning keeps CI from drifting off a version we've verified.
 [build.environment]
   NODE_VERSION = "22"
