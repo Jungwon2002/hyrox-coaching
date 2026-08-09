@@ -2,3 +2,7 @@
   base    = "site"
   command = "npm run build"
   publish = "site/dist"
+
+# Vite 8 needs Node >=20.19; Netlify's default image is older than that
+[build.environment]
+  NODE_VERSION = "22"
