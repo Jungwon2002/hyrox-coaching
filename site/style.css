@@ -950,41 +950,27 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
 .coach__prose-align { padding-left: 22px; }
 
 /* cert: sits inside the prose glass card between bio text and mission.
-   Row layout — image left, label right. No separate glass box; it inherits
+   Stacked and centred at every width — image above label. A left-aligned
+   row put the image against the card edge, so the hover magnify expanded
+   straight off the left of the screen on narrow viewports. Centring gives
+   the zoom equal room on both sides. No separate glass box; it inherits
    the prose surface. Hover to magnify, move away to shrink back. */
 .coach__cert {
   margin-top: clamp(28px, 4vw, 40px);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
+  text-align: center;
+  gap: 14px;
   padding-top: clamp(24px, 3.5vw, 32px);
   border-top: 1px solid var(--line);
 }
 
-@media (min-width: 560px) {
-  .coach__cert {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .coach__cert-cap {
-    text-align: center;
-  }
-}
-
 .coach__cert a {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
   cursor: default;
-}
-
-@media (min-width: 560px) {
-  .coach__cert a {
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
 }
 
 .coach__cert img {
@@ -1011,7 +997,7 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   display: flex;
   flex-direction: column;
   gap: 4px;
-  text-align: left;
+  text-align: center;
 }
 
 .coach__cert-label {
@@ -1030,15 +1016,10 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   line-height: 1.4;
 }
 
+/* keep the 3x zoom inside a narrow viewport: 100px * 3 = 300px, which
+   overruns a 375px screen once card padding is counted */
 @media (max-width: 560px) {
-  .coach__cert a {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .coach__cert img { margin-inline: auto; }
-
-  .coach__cert-cap { text-align: center; }
+  .coach__cert a:hover img { transform: scale(2.6); }
 }
 
 /* Mission — transparent glass box with toned backdrop blur and gentle
