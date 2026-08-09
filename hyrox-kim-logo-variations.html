@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYROX KIM — Logo Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --ink: #101210;
+    --volt: #FFE100;
+    --paper: #F7F8F3;
+    --bg: #FFFFFF;
+    --panel: #F7F8F3;
+    --muted: #83887B;
+    --line: #E7E9E1;
+    --grey: #6B7065;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 60px 24px 100px;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  header { margin-bottom: 64px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: ""; width: 9px; height: 18px; background: var(--volt);
+    transform: skewX(-18deg);
+  }
+  h1 {
+    font-family: "Oswald", "Pretendard Variable", sans-serif;
+    font-weight: 200; text-transform: uppercase;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.02; letter-spacing: 0.005em;
+    margin-bottom: 8px;
+  }
+  .intro { color: var(--grey); max-width: 60ch; font-size: 15px; }
+
+  .section-label {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin: 56px 0 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+
+  /* ---- Logo card grid ---- */
+  .grid { display: grid; gap: 18px; }
+  @media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+  .logo-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.18s ease;
+  }
+  .logo-card:hover { border-color: #c4c8bb; }
+
+  .logo-card__header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .logo-card__num {
+    font-family: "Oswald", sans-serif; font-weight: 400;
+    font-size: 13px; letter-spacing: 0.08em;
+    background: var(--volt); color: var(--ink);
+    padding: 3px 9px; transform: skewX(-8deg);
+    flex: 0 0 auto;
+  }
+  .logo-card__title { font-weight: 600; font-size: 15px; }
+  .logo-card__tagline {
+    margin-left: auto; font-size: 11px; color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  .logo-card__stage {
+    padding: 32px 20px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 140px;
+  }
+  .logo-card__stage svg {
+    width: min(100%, 480px); height: auto; display: block;
+  }
+
+  /* Colorway strips */
+  .logo-card__alt-strip {
+    display: flex; border-top: 1px solid var(--line);
+  }
+  .logo-card__alt-strip > * {
+    flex: 1; padding: 18px 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-card__alt-strip > * + * { border-left: 1px solid var(--line); }
+  .logo-card__alt-strip svg { width: 100%; max-width: 200px; height: auto; }
+
+  .bg-ink   { background: var(--ink); }
+  .bg-paper { background: var(--paper); }
+  .bg-volt  { background: var(--volt); }
+
+  /* SVG fill classes */
+  .f-ink  { fill: var(--ink); }
+  .f-volt { fill: var(--volt); }
+  .f-wht  { fill: #F2F4EC; }
+  .f-none { fill: none; }
+
+  /* Rationale */
+  .logo-card__why {
+    padding: 16px 20px;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
+    font-size: 13px; color: var(--grey);
+    line-height: 1.55;
+  }
+  .logo-card__why strong { color: var(--ink); }
+
+  /* Comparison row — current vs chosen */
+  .compare-strip {
+    margin-top: 64px; padding: 32px 28px;
+    border: 1px solid var(--line); border-radius: 16px;
+    display: grid; gap: 24px;
+  }
+  @media (min-width: 720px) { .compare-strip { grid-template-columns: 1fr 1fr; } }
+  .compare-strip__side h4 {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 16px;
+  }
+  .compare-strip__side svg { width: 100%; max-width: 420px; height: auto; }
+
+  .footnote {
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--muted); max-width: 64ch; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Shared SVG defs ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Direction 1: The Bracket -->
+    <g id="v1-bracket">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="14" y="64" font-size="72" letter-spacing="4" class="f-ink">HYROX</text>
+      </g>
+      <rect x="0" y="0" width="3" height="80" class="f-volt"/>
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="18" y="118" font-size="30" letter-spacing="8" class="f-ink">KIM</text>
+      </g>
+      <text x="20" y="140" font-size="13" letter-spacing="3" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 2: The Strike-through -->
+    <g id="v2-strike">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="66" font-size="78" letter-spacing="2" class="f-ink">HYROX KIM</text>
+      </g>
+      <line x1="0" y1="24" x2="390" y2="24" stroke-width="4" class="f-volt" style="stroke:var(--volt)"/>
+      <text x="0" y="104" font-size="14" letter-spacing="4" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 3: The Stack -->
+    <g id="v3-stack">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="40" font-size="46" letter-spacing="6" class="f-ink">HYROX</text>
+      </g>
+      <g style="font-family:'Anton','Oswald',sans-serif;font-weight:400">
+        <text x="0" y="86" font-size="52" letter-spacing="3" class="f-ink">KIM</text>
+      </g>
+      <line x1="0" y1="94" x2="220" y2="94" stroke-width="3" class="f-volt" style="stroke:var(--volt)"/>
+      <text x="0" y="124" font-size="13" letter-spacing="3" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 4: The V-Cut -->
+    <g id="v4-vcut">
+      <polygon points="0,0 28,0 42,80 14,80" class="f-volt"/>
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="50" y="64" font-size="76" letter-spacing="3" class="f-ink">HYROX</text>
+        <text x="50" y="128" font-size="28" letter-spacing="10" class="f-ink">KIM</text>
+      </g>
+      <text x="52" y="152" font-size="13" letter-spacing="3" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 5: The Shield -->
+    <g id="v5-shield">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="4" y="54" font-size="60" letter-spacing="3" class="f-ink">HYROX</text>
+      </g>
+      <g style="font-family:'Anton','Oswald',sans-serif;font-weight:400">
+        <text x="4" y="92" font-size="44" letter-spacing="6" class="f-ink">KIM</text>
+      </g>
+      <polygon points="0,8 18,8 1,82 -17,82" class="f-volt"/>
+      <text x="6" y="124" font-size="12" letter-spacing="2.5" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 6: The Signal Bar -->
+    <g id="v6-signal">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="56" font-size="68" letter-spacing="1" class="f-ink">HYROX</text>
+        <text x="206" y="56" font-size="68" letter-spacing="1" class="f-ink">KIM</text>
+      </g>
+      <rect x="193" y="8" width="8" height="42" class="f-volt"/>
+      <line x1="0" y1="68" x2="400" y2="68" stroke-width="1.5" class="f-ink" style="stroke:var(--ink)"/>
+      <text x="0" y="96" font-size="13" letter-spacing="3.5" class="f-ink"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo',sans-serif;font-weight:700">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Direction 0: The Current Split -->
+    <g id="mark-current">
+      <g transform="skewX(-6)" style="font-family:'Anton','Futura-CondensedExtraBold','Arial Narrow',Impact,sans-serif;font-weight:400">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#101210">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#FFE100"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#FFE100">KIM</text>
+      </g>
+      <text x="16" y="112" font-size="17" letter-spacing="4" fill="#101210"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:800">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+    <g id="mark-current-ink">
+      <g transform="skewX(-6)" style="font-family:'Anton','Futura-CondensedExtraBold','Arial Narrow',Impact,sans-serif;font-weight:400">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#F2F4EC">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#FFE100"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#FFE100">KIM</text>
+      </g>
+      <text x="16" y="112" font-size="17" letter-spacing="4" fill="#F2F4EC"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:800">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+    <g id="mark-current-volt">
+      <g transform="skewX(-6)" style="font-family:'Anton','Futura-CondensedExtraBold','Arial Narrow',Impact,sans-serif;font-weight:400">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#101210">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#101210"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#101210">KIM</text>
+      </g>
+      <text x="16" y="112" font-size="17" letter-spacing="4" fill="#101210"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:800">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+
+    <!-- Compact variants (no subtitle) -->
+    <g id="v1-compact">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="14" y="64" font-size="72" letter-spacing="4" class="f-ink">HYROX</text>
+      </g>
+      <rect x="0" y="0" width="3" height="80" class="f-volt"/>
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="18" y="118" font-size="30" letter-spacing="8" class="f-ink">KIM</text>
+      </g>
+    </g>
+    <g id="v2-compact">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="66" font-size="78" letter-spacing="2" class="f-ink">HYROX KIM</text>
+      </g>
+      <line x1="0" y1="24" x2="390" y2="24" stroke-width="4" class="f-volt" style="stroke:var(--volt)"/>
+    </g>
+    <g id="v3-compact">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="40" font-size="46" letter-spacing="6" class="f-ink">HYROX</text>
+      </g>
+      <g style="font-family:'Anton','Oswald',sans-serif;font-weight:400">
+        <text x="0" y="86" font-size="52" letter-spacing="3" class="f-ink">KIM</text>
+      </g>
+      <line x1="0" y1="94" x2="220" y2="94" stroke-width="3" class="f-volt" style="stroke:var(--volt)"/>
+    </g>
+    <g id="v4-compact">
+      <polygon points="0,0 28,0 42,80 14,80" class="f-volt"/>
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="50" y="64" font-size="76" letter-spacing="3" class="f-ink">HYROX</text>
+        <text x="50" y="128" font-size="28" letter-spacing="10" class="f-ink">KIM</text>
+      </g>
+    </g>
+    <g id="v5-compact">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="4" y="54" font-size="60" letter-spacing="3" class="f-ink">HYROX</text>
+      </g>
+      <g style="font-family:'Anton','Oswald',sans-serif;font-weight:400">
+        <text x="4" y="92" font-size="44" letter-spacing="6" class="f-ink">KIM</text>
+      </g>
+      <polygon points="0,8 18,8 1,82 -17,82" class="f-volt"/>
+    </g>
+    <g id="v6-compact">
+      <g style="font-family:'Oswald',sans-serif;font-weight:200">
+        <text x="0" y="56" font-size="68" letter-spacing="1" class="f-ink">HYROX</text>
+        <text x="206" y="56" font-size="68" letter-spacing="1" class="f-ink">KIM</text>
+      </g>
+      <rect x="193" y="8" width="8" height="42" class="f-volt"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Logo · 6 Variations · HYROX KIM</div>
+    <h1>Six Directions, One Mark</h1>
+    <p class="intro">Each direction keeps the brand's core — Oswald hairline Latin, Pretendard Korean, ink + volt palette — while exploring a different spatial relationship between the name and the slash. The current "Split" logo is included as Direction 0 for comparison.</p>
+  </header>
+
+  <!-- ===== Direction 0: Current (The Split) ===== -->
+  <div class="section-label">Current · Direction 0 — The Split</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">0</span>
+      <span class="logo-card__title">The Split</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 470 126"><use href="#mark-current"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 470 126"><use href="#mark-current-ink"/></svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 470 126"><use href="#mark-current-volt"/></svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>What it is:</strong> HYROX and KIM sit on one line separated by a skewed yellow parallelogram — the site's signature motif. Strong, instantly recognizable, and the identity the site is built on. The slash is the recurring brand mark.
+    </div>
+  </div>
+
+  <!-- ===== Direction 1: The Bracket ===== -->
+  <div class="section-label">Direction 1</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">1</span>
+      <span class="logo-card__title">The Bracket</span>
+      <span class="logo-card__tagline">vertical · stacked · architectural</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 420 150"><use href="#v1-bracket"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 420 150">
+        <use href="#v1-bracket"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 420 150">
+        <use href="#v1-bracket"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> A volt vertical rule anchors the left edge like a starting block. HYROX runs full-width at the top, KIM sits beneath it — the name reads as two stacked claims, not one fused word. The bracket gives it a structural, almost architectural feel. Works especially well as a nav lockup (compact version drops the subtitle).
+    </div>
+  </div>
+
+  <!-- ===== Direction 2: The Strike-through ===== -->
+  <div class="section-label">Direction 2</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">2</span>
+      <span class="logo-card__title">The Strike-through</span>
+      <span class="logo-card__tagline">one line · line-through · bold</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 420 120"><use href="#v2-strike"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 420 120">
+        <use href="#v2-strike"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 420 120">
+        <use href="#v2-strike"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> HYROX KIM is written as one continuous word. A volt line strikes through the top of the name — a finish line, a tape, a barrier broken. The mark is the interruption itself. Reads fastest of all six directions; the most compact in nav bars and avatars.
+    </div>
+  </div>
+
+  <!-- ===== Direction 3: The Stack ===== -->
+  <div class="section-label">Direction 3</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">3</span>
+      <span class="logo-card__title">The Stack</span>
+      <span class="logo-card__tagline">two-weight · layered · editorial</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 280 140"><use href="#v3-stack"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 280 140">
+        <use href="#v3-stack"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 280 140">
+        <use href="#v3-stack"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> HYROX runs light and wide (Oswald 200, wide tracking); KIM runs heavy and tight (Anton, the wordmark's original face). The volt line beneath KIM is the signature slash turned horizontal — a ground line, a starting position. Most editorial of the six, with clear hierarchy. The tension between the two weights makes the name feel like a statement.
+    </div>
+  </div>
+
+  <!-- ===== Direction 4: The V-Cut ===== -->
+  <div class="section-label">Direction 4</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">4</span>
+      <span class="logo-card__title">The V-Cut</span>
+      <span class="logo-card__tagline">diagonal cut · dynamic · slice</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 420 165"><use href="#v4-vcut"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 420 165">
+        <use href="#v4-vcut"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 420 165">
+        <use href="#v4-vcut"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> A skewed volt wedge cuts into the left edge — the slash motif, but larger, more aggressive, a starting chute or a lane divider. HYROX and KIM stack on two lines to the right of the cut. The whole mark reads as something in motion; the wedge implies forward velocity. Most dynamic of the six.
+    </div>
+  </div>
+
+  <!-- ===== Direction 5: The Shield ===== -->
+  <div class="section-label">Direction 5</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">5</span>
+      <span class="logo-card__title">The Shield</span>
+      <span class="logo-card__tagline">contained · crest · credible</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 320 140"><use href="#v5-shield"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 320 140">
+        <use href="#v5-shield"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 320 140">
+        <use href="#v5-shield"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> A compact crest-like composition: HYROX above KIM, with a small skewed volt wedge as the left shoulder mark — a badge, not a divider. Feels the most "official," like an event seal or a federation mark. Reads as credible and established. The wedge is the same geometry as the site's eyebrow tick, scaled down to badge size.
+    </div>
+  </div>
+
+  <!-- ===== Direction 6: The Signal Bar ===== -->
+  <div class="section-label">Direction 6</div>
+  <div class="logo-card">
+    <div class="logo-card__header">
+      <span class="logo-card__num">6</span>
+      <span class="logo-card__title">The Signal Bar</span>
+      <span class="logo-card__tagline">split · signal · precise</span>
+    </div>
+    <div class="logo-card__stage bg-paper">
+      <svg viewBox="0 0 420 115"><use href="#v6-signal"/></svg>
+    </div>
+    <div class="logo-card__alt-strip">
+      <div class="bg-ink"><svg viewBox="0 0 420 115">
+        <use href="#v6-signal"/><style>.f-ink{fill:#F2F4EC}.f-volt{fill:#FFE100}</style>
+      </svg></div>
+      <div class="bg-volt"><svg viewBox="0 0 420 115">
+        <use href="#v6-signal"/><style>.f-ink{fill:#101210}.f-volt{fill:#101210}</style>
+      </svg></div>
+    </div>
+    <div class="logo-card__why">
+      <strong>Idea:</strong> Closest to the current Split, but refined: HYROX and KIM sit on one line with a tall volt rectangle between them — a signal bar, a timing gate, a lane marker. A hairline rule beneath grounds the whole mark. The bar is taller and thinner than the current parallelogram, making the separation read as a deliberate pause rather than an inserted shape. Most precise of the six.
+    </div>
+  </div>
+
+  <!-- ===== Side-by-side: Current next to best contender ===== -->
+  <div class="section-label">Quick Compare — Current × Direction 3 (The Stack)</div>
+  <div class="compare-strip">
+    <div class="compare-strip__side">
+      <h4>Current · The Split</h4>
+      <svg viewBox="0 0 470 126"><use href="#mark-current"/></svg>
+    </div>
+    <div class="compare-strip__side">
+      <h4>Direction 3 · The Stack</h4>
+      <svg viewBox="0 0 280 140"><use href="#v3-stack"/></svg>
+    </div>
+  </div>
+
+  <p class="footnote">
+    <strong>How to read these:</strong> Each direction is a complete mark, not a mood board. Test them at small sizes (nav bar, avatar), on dark backgrounds (hero cover), and next to the site's existing typography. The current Split logo (Direction 0) is the bar — any replacement should earn its place by being at least as clear at 24px height and at least as recognizable in a single color. Directions 2 and 3 are the strongest contenders for readability at small sizes; Direction 6 is the closest evolution of the current mark with minimal disruption to the existing site.
+  </p>
+</div>
+
+</body>
+</html>

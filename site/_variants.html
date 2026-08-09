@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커버 색상 시안 — HYROX KIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---- comparison chrome (not part of the site) ---- */
+  .vlabel {
+    background: var(--paper-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+  }
+  .vlabel .shell { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .vlabel b {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 26px;
+    letter-spacing: 0.04em;
+  }
+  .vlabel span { font-size: 13.5px; color: var(--grey); }
+  .vnote {
+    padding: 26px 0 34px;
+    font-size: 13.5px;
+    color: var(--grey);
+  }
+  /* the still stands in for the video so four heroes stay light */
+  .hero-dark__video { object-fit: cover; }
+
+  /* ============ A · white headline, volt label ============ */
+  .v-a h1 em { color: #fff; }
+  .v-a .hero-dark__kr { color: #fff; }
+  .v-a .hero-dark__kicker { color: var(--volt); }
+
+  /* ============ B · same, gold CTA ============ */
+  .v-b h1 em { color: #fff; }
+  .v-b .hero-dark__kr { color: #fff; }
+  .v-b .hero-dark__kicker { color: var(--volt); }
+
+  /* ============ C · current volt accent words ============ */
+
+  /* ============ D · volt Korean tagline ============ */
+  .v-d h1 em { color: #fff; }
+  .v-d .hero-dark__kr { color: var(--volt); }
+
+  /* gold primary on the dark hero, matching the reference button */
+  .hero-dark .btn--volt { background: var(--volt); color: var(--ink); border-color: transparent; }
+  .hero-dark .btn--volt:hover { background: var(--volt-deep); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mark-compact">
+      <g transform="skewX(-6)" style="font-family:'Anton','Arial Narrow',Impact,sans-serif">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#101210">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#FFE100"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#101210">KIM</text>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="shell nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="HYROX KIM 홈">
+      <svg viewBox="0 0 470 92"><use href="#mark-compact"/></svg>
+    </a>
+    <ul class="nav__links">
+      <li><a class="nav__cta" href="index.html">사이트로 돌아가기 · Back</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <div class="vnote">
+    <div class="shell">
+      커버 색상 시안 4종입니다. 마음에 드는 번호를 알려주시면 그대로 적용합니다.<br>
+      Four colour treatments for the cover. Tell me a letter and I'll make it the real one.
+    </div>
+  </div>
+
+  <!-- ============================= A ============================= -->
+  <div class="vlabel">
+    <div class="shell">
+      <b>A</b>
+      <span>제목·태그라인 전부 화이트 · 작은 글씨만 옐로 · 버튼 블랙/화이트</span>
+    </div>
+  </div>
+  <section class="hero-dark v-a" aria-label="시안 A">
+    <img class="hero-dark__video" src="assets/hero-still.jpg" alt="">
+    <div class="hero-dark__scrim" aria-hidden="true"></div>
+    <div class="shell hero-dark__inner">
+      <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+      <h1>
+        <span class="line">Train <em>Smarter.</em></span>
+        <span class="line">Race <em>Stronger.</em></span>
+      </h1>
+      <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+      <div class="btn-row">
+        <a class="btn btn--ink" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+        <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+      </div>
+      <p class="hero-dark__lede">맞춤형 근거 기반 코칭을 통해 목표를 달성하고, PB를 경신하며, 한계를 극복할 수 있도록 돕습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============================= B ============================= -->
+  <div class="vlabel">
+    <div class="shell">
+      <b>B</b>
+      <span>A와 동일 · 메인 버튼을 골드로 (레퍼런스 버튼 느낌)</span>
+    </div>
+  </div>
+  <section class="hero-dark v-b" aria-label="시안 B">
+    <img class="hero-dark__video" src="assets/hero-still.jpg" alt="">
+    <div class="hero-dark__scrim" aria-hidden="true"></div>
+    <div class="shell hero-dark__inner">
+      <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+      <h1>
+        <span class="line">Train <em>Smarter.</em></span>
+        <span class="line">Race <em>Stronger.</em></span>
+      </h1>
+      <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+      <div class="btn-row">
+        <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+        <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+      </div>
+      <p class="hero-dark__lede">맞춤형 근거 기반 코칭을 통해 목표를 달성하고, PB를 경신하며, 한계를 극복할 수 있도록 돕습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============================= C ============================= -->
+  <div class="vlabel">
+    <div class="shell">
+      <b>C</b>
+      <span>현재 방식 · 제목 안의 Smarter · Stronger 만 옐로 · 골드 버튼</span>
+    </div>
+  </div>
+  <section class="hero-dark v-c" aria-label="시안 C">
+    <img class="hero-dark__video" src="assets/hero-still.jpg" alt="">
+    <div class="hero-dark__scrim" aria-hidden="true"></div>
+    <div class="shell hero-dark__inner">
+      <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+      <h1>
+        <span class="line">Train <em>Smarter.</em></span>
+        <span class="line">Race <em>Stronger.</em></span>
+      </h1>
+      <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+      <div class="btn-row">
+        <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+        <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+      </div>
+      <p class="hero-dark__lede">맞춤형 근거 기반 코칭을 통해 목표를 달성하고, PB를 경신하며, 한계를 극복할 수 있도록 돕습니다.</p>
+    </div>
+  </section>
+
+  <!-- ============================= D ============================= -->
+  <div class="vlabel">
+    <div class="shell">
+      <b>D</b>
+      <span>영문 제목은 화이트 · 한글 태그라인을 옐로로 · 골드 버튼</span>
+    </div>
+  </div>
+  <section class="hero-dark v-d" aria-label="시안 D">
+    <img class="hero-dark__video" src="assets/hero-still.jpg" alt="">
+    <div class="hero-dark__scrim" aria-hidden="true"></div>
+    <div class="shell hero-dark__inner">
+      <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+      <h1>
+        <span class="line">Train <em>Smarter.</em></span>
+        <span class="line">Race <em>Stronger.</em></span>
+      </h1>
+      <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+      <div class="btn-row">
+        <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+        <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+      </div>
+      <p class="hero-dark__lede">맞춤형 근거 기반 코칭을 통해 목표를 달성하고, PB를 경신하며, 한계를 극복할 수 있도록 돕습니다.</p>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

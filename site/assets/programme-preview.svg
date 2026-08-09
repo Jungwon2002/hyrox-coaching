@@ -1,0 +1,58 @@
+<svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="주간 훈련 프로그램을 보여주는 앱 화면 예시">
+  <defs>
+    <clipPath id="screen-clip">
+      <rect x="6" y="6" width="268" height="388" rx="24"/>
+    </clipPath>
+  </defs>
+
+  <!-- phone body -->
+  <rect x="0" y="0" width="280" height="400" rx="30" fill="#101210"/>
+
+  <g clip-path="url(#screen-clip)">
+    <rect x="6" y="6" width="268" height="388" fill="#F7F8F3"/>
+
+    <!-- status bar -->
+    <text x="26" y="34" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#101210">9:41</text>
+    <rect x="233" y="26" width="19" height="9" rx="2.5" fill="none" stroke="#101210" stroke-width="1"/>
+    <rect x="253" y="28.5" width="1.6" height="4" rx="0.8" fill="#101210"/>
+    <rect x="236" y="28" width="13" height="5" rx="1.2" fill="#101210"/>
+
+    <!-- app header -->
+    <text x="26" y="70" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="9" font-weight="700" letter-spacing="1.6" fill="#83887B">WEEK 3 · DAY 2</text>
+    <text x="26" y="95" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="700" fill="#101210">역치 인터벌</text>
+    <text x="26" y="111" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10.5" fill="#83887B">Threshold Running</text>
+
+    <line x1="26" y1="128" x2="254" y2="128" stroke="#E7E9E1" stroke-width="1"/>
+
+    <!-- row 1: warm up (completed) -->
+    <circle cx="38" cy="158" r="9" fill="#FFE100"/>
+    <path d="M34 158.5l3 3 6-6.5" stroke="#101210" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="56" y="155" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="600" fill="#101210">웜업</text>
+    <text x="56" y="169" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10.5" fill="#83887B">10min · Easy</text>
+
+    <!-- row 2: main set (pending) -->
+    <circle cx="38" cy="204" r="9" fill="none" stroke="#D8DBD0" stroke-width="1.5"/>
+    <text x="56" y="201" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="600" fill="#101210">메인 세트</text>
+    <text x="56" y="215" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10.5" fill="#83887B">3 × 10min @ 4:25/km</text>
+
+    <!-- row 3: cool down (pending) -->
+    <circle cx="38" cy="250" r="9" fill="none" stroke="#D8DBD0" stroke-width="1.5"/>
+    <text x="56" y="247" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12.5" font-weight="600" fill="#101210">쿨다운</text>
+    <text x="56" y="261" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10.5" fill="#83887B">10min · Easy</text>
+
+    <line x1="26" y1="296" x2="254" y2="296" stroke="#E7E9E1" stroke-width="1"/>
+
+    <!-- progress -->
+    <text x="26" y="318" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="600" fill="#101210">오늘 진행률</text>
+    <text x="254" y="318" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#101210" text-anchor="end">1 / 3</text>
+    <rect x="26" y="326" width="228" height="6" rx="3" fill="#E7E9E1"/>
+    <rect x="26" y="326" width="76" height="6" rx="3" fill="#FFE100"/>
+
+    <!-- coach note -->
+    <rect x="26" y="348" width="228" height="30" rx="8" fill="#101210"/>
+    <text x="40" y="367" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="500" fill="#F7F8F3">코치: 오늘 폼 영상 하나만 부탁해요!</text>
+  </g>
+
+  <!-- phone frame highlight -->
+  <rect x="1" y="1" width="278" height="398" rx="29" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,1559 @@
+@layer base {
+/* ==========================================================
+   HYROX KIM — Online Coaching
+   Paper white · Ink · Volt yellow · The Split
+   ========================================================== */
+
+:root {
+  --paper: #ffffff;
+  --paper-soft: #f7f8f3;
+  --ink: #101210;
+  --grey: #43473f;
+  --muted: #83887b;
+  --line: #e7e9e1;
+  --volt: #ffe100;
+  --volt-deep: #f5d800;
+
+  /* Condensed-light display voice. Oswald carries Latin; Korean has no true
+     condensed equivalent, so it matches on weight and airiness via Pretendard,
+     which is already the body face. Anton survives only inside the wordmark
+     SVG. Weights run 200 for the largest type, 300 for mid, 400 for small —
+     a hairline face needs mass back as it shrinks. */
+  --font-display: "Oswald", "Pretendard Variable", Pretendard,
+    "Apple SD Gothic Neo", sans-serif;
+  --font-kr-display: "Pretendard Variable", Pretendard,
+    "Apple SD Gothic Neo", sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", Roboto,
+    "Malgun Gothic", sans-serif;
+
+  --radius-card: 20px;
+  --radius-pill: 999px;
+  /* drawn once, worn by every button via mask + currentColor */
+  --arrow: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 12'%3E%3Cpath d='M0 6h18.2M13.4 1.2 18.9 6l-5.5 4.8' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='square'/%3E%3C/svg%3E");
+  --w-content: 1120px;
+  --w-narrow: 760px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--volt); color: var(--ink); }
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- shared shells ---------- */
+
+.shell {
+  width: min(var(--w-content), 100% - 40px);
+  margin-inline: auto;
+}
+
+.shell--narrow {
+  width: min(var(--w-narrow), 100% - 40px);
+  margin-inline: auto;
+}
+
+section { padding: clamp(72px, 11vw, 132px) 0; }
+
+/* ---------- the slash (signature) ---------- */
+
+.slash {
+  display: inline-block;
+  width: 0.34em;
+  height: 0.94em;
+  background: var(--volt);
+  transform: skewX(-18deg);
+  margin-inline: 0.12em;
+  vertical-align: -0.08em;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 9px;
+  height: 18px;
+  background: var(--volt);
+  transform: skewX(-18deg);
+}
+
+/* ---------- bilingual pairs ---------- */
+
+.en-sub {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+}
+
+.nav__logo svg { height: 30px; width: auto; }
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 3vw, 32px);
+  list-style: none;
+}
+
+.nav__links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--grey);
+  transition: color 0.18s ease;
+}
+
+.nav__links a:hover { color: var(--ink); }
+
+/* .nav__links a's descendant selector otherwise wins on specificity and
+   paints this link the same muted grey as the plain nav links */
+.nav__links a.nav__cta {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: var(--ink);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: background 0.18s ease;
+}
+
+.nav__links a.nav__cta:hover { background: #000; color: #fff; }
+
+@media (max-width: 640px) {
+  .nav__links li.nav__hide-sm { display: none; }
+}
+
+/* ---------- hero (dark, video-blended) ---------- */
+
+.hero-dark {
+  position: relative;
+  background: var(--ink);
+  color: #f2f4ec;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* No fade at the foot. Any ramp from the dark hero to the white page travels
+   through grey, and that band is the thing the user rejected — twice. The
+   hero's own scrim already resolves to solid ink at the bottom, so the block
+   simply ends and the white page begins on a clean edge. */
+
+.hero-dark__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.hero-dark__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(16, 18, 16, 0.55) 0%, rgba(16, 18, 16, 0.15) 34%, rgba(16, 18, 16, 0.6) 74%, var(--ink) 100%),
+    linear-gradient(90deg, rgba(16, 18, 16, 0.82) 0%, rgba(16, 18, 16, 0.4) 55%, rgba(16, 18, 16, 0.12) 100%);
+}
+
+.hero-dark__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* shorter than before now that the CTAs live in their own white band below —
+     this used to be sized to also hold the buttons, which pushed the headline
+     low and left the buttons off the first screen on a laptop */
+  min-height: min(56vh, 540px);
+  padding: clamp(72px, 10vw, 108px) 0 clamp(40px, 6vw, 56px);
+}
+
+.hero-dark__kicker {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-kr-display);
+  font-size: clamp(14.5px, 1.8vw, 18px);
+  font-weight: 500;
+  /* Korean syllables already carry their own internal space — the tracking
+     that flatters Latin caps pulls 온라인 코치 apart */
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.hero-dark__kicker::before {
+  content: "";
+  width: 9px;
+  height: 19px;
+  background: var(--volt);
+  transform: skewX(-18deg);
+  flex: 0 0 auto;
+}
+
+.hero-dark h1 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  text-transform: uppercase;
+  font-size: clamp(44px, 7.8vw, 88px);
+  line-height: 1.02;
+  letter-spacing: 0.005em;
+  color: #fff;
+}
+
+.hero-dark h1 .line { display: block; }
+
+/* Ignite delay is per-line: the white headline fades in first (~0.78s via
+   .reveal), then each word turns volt — Smarter first, Stronger a beat
+   after — so the colour reads as a second, distinct motion instead of
+   blending into the fade-up. */
+.hero-dark h1 .line:nth-of-type(1) { --ignite: 0.7s; }
+.hero-dark h1 .line:nth-of-type(2) { --ignite: 0.86s; }
+
+.hero-dark h1 em {
+  font-style: normal;
+  color: inherit;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 0 rgba(255, 225, 0, 0);
+  transition: color 0.55s ease-out, text-shadow 0.8s ease-out;
+  transition-delay: var(--ignite, 0.7s);
+}
+
+html.js .hero-dark h1 .line.is-in em {
+  color: var(--volt);
+  text-shadow: 0 0 18px rgba(255, 225, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dark h1 em {
+    transition: none;
+    color: var(--volt);
+    text-shadow: none;
+  }
+}
+
+.hero-dark__kr {
+  margin-top: 18px;
+  font-family: var(--font-kr-display);
+  font-weight: 300;
+  font-size: clamp(20px, 3vw, 31px);
+  letter-spacing: -0.01em;
+  color: #eef0e7;
+}
+
+/* mirrors the headline's ignite: white first, then each word turns volt
+   after the tagline itself has faded in, staggered between the two words */
+.hero-dark__kr em {
+  font-style: normal;
+  color: inherit;
+  transition: color 0.55s ease-out;
+}
+
+.hero-dark__kr em:nth-of-type(1) { transition-delay: 0.9s; }
+.hero-dark__kr em:nth-of-type(2) { transition-delay: 1.06s; }
+
+html.js .hero-dark__kr.is-in em { color: var(--volt); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dark__kr em { transition: none; color: var(--volt); }
+}
+
+/* closing note, no box — plain text with the key phrase carrying a volt
+   highlight chip. Uses the ordinary .reveal fade, same as the rest of the
+   hero. Back on the ink cover, so colours are dark-ground tokens again. */
+.hero-dark__lede {
+  position: relative;
+  z-index: 0;
+  margin-top: clamp(22px, 3vw, 30px);
+  /* the button's own left edge sits flush with this text, but the button's
+     label is inset by its px-12 padding — offset by the same amount so the
+     two lines of text align, not just the two boxes */
+  margin-left: 48px;
+  max-width: 40ch;
+  font-size: clamp(13.5px, 1.4vw, 14.5px);
+  font-weight: 500;
+  color: #a7ac9f;
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+}
+
+/* the white-ground twin of the coach statement's mark: a skewed volt slab
+   behind ink text, since volt text on white reads at near-zero contrast */
+.hero-dark__lede em {
+  position: relative;
+  display: inline-block;
+  font-style: normal;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero-dark__lede em::before {
+  content: "";
+  position: absolute;
+  inset: 0.1em -0.14em 0.06em -0.14em;
+  background: var(--volt);
+  transform: skewX(-8deg);
+  transform-origin: left center;
+  z-index: -1;
+}
+
+
+/* Mobile: a cover-fill crops the landscape footage to a narrow slot, so show
+   the whole 16:9 frame as a band across the top and run the copy underneath
+   it instead of pinning it to the floor of a tall hero.
+   Source is 960×540, so 56.25vw is the exact frame height at full width. */
+@media (max-width: 760px) {
+  /* The whole cover stays ink. The video's dark foot and the ground below it
+     are the same black, so the footage reads as part of the panel rather than
+     a picture pasted onto a page. White arrives only at the Method section,
+     on a hard edge. Source is 960×540, so the frame is 56.25vw tall. */
+  .hero-dark__video {
+    height: 56.25vw;
+    bottom: auto;
+    object-fit: contain;
+    opacity: 1;
+    background: var(--ink);
+  }
+
+  /* darkens steadily down the frame so the type sits in it rather than on it,
+     and so the foot of the video meets the ink ground with no visible seam */
+  .hero-dark__scrim {
+    height: calc(56.25vw + 1px);
+    bottom: auto;
+    background: linear-gradient(180deg,
+      rgba(16, 18, 16, 0.3) 0%,
+      rgba(16, 18, 16, 0.46) 22%,
+      rgba(16, 18, 16, 0.62) 52%,
+      rgba(16, 18, 16, 0.78) 84%,
+      rgba(16, 18, 16, 0.93) 100%);
+  }
+
+  /* eyebrow, headline and tagline ride the video; the CTA band below is a
+     separate white section now, so this only needs to clear the video */
+  .hero-dark__inner {
+    min-height: 0;
+    justify-content: flex-start;
+    padding: clamp(28px, 8vw, 44px) 0 clamp(12px, 3vw, 20px);
+  }
+
+  /* buttons and the closing line share one centered axis, rather than the
+     line trailing off to the side under a full-width button. Below 560px
+     .btn-row flips to flex-direction: column (legacy rule for the static
+     .btn system), which makes align-items — not justify-content — the one
+     that centers horizontally; setting both covers either axis. */
+  .hero-cta .btn-row {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-dark__lede {
+    margin-left: 0;
+    margin-inline: auto;
+    max-width: 32ch;
+    text-align: center;
+  }
+}
+
+/* stays on the ink cover — the hard edge to white only arrives at the Coach
+   section, not before the CTAs */
+.hero-cta {
+  background: var(--ink);
+  color: #fff;
+  padding: clamp(40px, 7vw, 64px) 0 clamp(56px, 9vw, 88px);
+}
+
+/* Mobile-only: pulls the CTAs up snug under the tagline, shortening the ink
+   cover overall rather than leaving dead air before the buttons. Placed
+   after the base .hero-cta rule so it actually wins the cascade — an
+   earlier attempt inside the existing max-width block above lost to this
+   later, equal-specificity base rule regardless of its narrower query. */
+@media (max-width: 760px) {
+  .hero-cta {
+    padding-top: clamp(12px, 3vw, 20px);
+  }
+}
+
+/* Desktop-only: the hero runs taller and the scrim eases off later, so
+   footage stays visible behind the tagline instead of fading to flat ink
+   before the buttons arrive — mobile keeps its own proportions untouched. */
+@media (min-width: 761px) {
+  .hero-dark__inner {
+    min-height: min(68vh, 660px);
+  }
+
+  .hero-dark__scrim {
+    background:
+      linear-gradient(180deg, rgba(16, 18, 16, 0.5) 0%, rgba(16, 18, 16, 0.12) 34%, rgba(16, 18, 16, 0.45) 80%, var(--ink) 100%),
+      linear-gradient(90deg, rgba(16, 18, 16, 0.82) 0%, rgba(16, 18, 16, 0.4) 55%, rgba(16, 18, 16, 0.12) 100%);
+  }
+
+  .hero-cta {
+    padding-top: clamp(8px, 1.5vw, 16px);
+  }
+}
+
+.hero-cta .btn-row {
+  margin-top: 0;
+}
+
+/* ---------- buttons ---------- */
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+/* Square-shouldered slab, not a pill — a 4px radius reads as a printed block
+   and sits closer to the wordmark's own geometry. The arrow lives in the right
+   padding as a masked SVG, so it inherits the label's colour on every variant
+   and never needs a second definition per button. */
+.btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  padding: 14px 44px;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 17px;
+  height: 10px;
+  transform: translateY(-50%);
+  background: currentColor;
+  -webkit-mask: var(--arrow) no-repeat center / contain;
+  mask: var(--arrow) no-repeat center / contain;
+  opacity: 0.9;
+  transition: transform 0.18s ease;
+}
+
+.btn:hover::after { transform: translateY(-50%) translateX(3px); }
+
+.btn strong {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+
+.btn span {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  /* not opacity — that would also dim a nested highlight chip's own
+     background (see .final-cta's "FREE" tag); color-mix only fades the
+     inherited text color */
+  color: color-mix(in srgb, currentColor 70%, transparent);
+  line-height: 1.4;
+}
+
+.btn--volt {
+  background: var(--ink);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.btn--volt:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(16, 18, 16, 0.2);
+}
+
+.btn--ink { background: var(--ink); color: #fff; }
+
+.btn--ink:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(16, 18, 16, 0.2);
+}
+
+/* a black pill on a black hero needs an edge to exist at all */
+.hero-dark .btn--ink {
+  background: #0a0b0a;
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.hero-dark .btn--ink:hover {
+  background: #000;
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- lit CTAs on the cover ----------
+   The glow is a lamp, not a halo: a real cast shadow underneath carries the
+   depth, a colour-matched bloom above it does the lighting, and a hairline
+   inset picks out the top edge so the pill reads as a lit surface. The
+   primary CTA is black now, not volt, so its bloom reads white/neutral —
+   still the one lit, breathing element, just relit. */
+
+.hero-dark .btn--volt {
+  background: #0a0b0a;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.hero-dark .btn--paper {
+  box-shadow:
+    0 10px 26px rgba(16, 18, 16, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.hero-dark .btn--volt:hover {
+  background: #000;
+  border-color: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.55),
+    0 0 38px rgba(255, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.hero-dark .btn--paper:hover {
+  background: #fff;
+  box-shadow:
+    0 14px 32px rgba(16, 18, 16, 0.55),
+    0 0 34px rgba(255, 255, 255, 0.3),
+    inset 0 1px 0 #fff;
+}
+
+/* one slow breath on the primary action only, and only while the cover is
+   actually on screen — script.js toggles the gate class */
+@keyframes cta-breathe {
+  0%, 100% { box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(255, 255, 255, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+  50% { box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.5),
+    0 0 34px rgba(255, 255, 255, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+}
+
+.hero-dark.is-onscreen .btn--volt:not(:hover) {
+  animation: cta-breathe 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dark.is-onscreen .btn--volt:not(:hover) { animation: none; }
+}
+
+.btn--paper { background: #fff; color: var(--ink); }
+
+.btn--paper:hover {
+  background: var(--paper-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn--ghost:hover { background: var(--paper-soft); transform: translateY(-2px); }
+
+@media (max-width: 560px) {
+  .btn-row { flex-direction: column; }
+  .btn { width: 100%; }
+}
+
+/* ---------- method ---------- */
+
+.section-head { margin-bottom: clamp(36px, 6vw, 56px); }
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1.1;
+}
+
+.section-head .en-sub { margin-top: 10px; }
+
+.card-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 30px 26px 34px;
+}
+
+.card__num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  background: var(--volt);
+  display: inline-block;
+  padding: 3px 10px;
+  transform: skewX(-8deg);
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.card .en-sub { margin: 4px 0 14px; }
+
+.card p { font-size: 14.5px; color: var(--grey); }
+
+.card__preview {
+  display: block;
+  width: 128px;
+  margin: 18px auto 0;
+  border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(16, 18, 16, 0.04), 0 10px 24px rgba(16, 18, 16, 0.1);
+}
+
+/* ---------- offers ---------- */
+
+.offers { background: var(--ink); color: #f2f4ec; }
+
+.offers .eyebrow { color: #9aa093; }
+
+.offers .section-head h2 { color: #fff; }
+
+.offers .en-sub { color: #9aa093; }
+
+.offer-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  background: #171913;
+  border: 1px solid #2a2d26;
+  border-radius: var(--radius-card);
+  padding: 38px 32px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.offer:hover { transform: translateY(-4px); border-color: #3a3e34; }
+
+.offer__badge {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--volt);
+  padding: 5px 12px;
+  transform: skewX(-8deg);
+  margin-bottom: 22px;
+}
+
+.offer h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(29px, 4vw, 39px);
+  line-height: 1.12;
+  color: #fff;
+}
+
+.offer .kr-sub {
+  font-size: 18.5px;
+  font-weight: 500;
+  margin-top: 6px;
+  color: #d9dccf;
+}
+
+.offer p { margin-top: 16px; font-size: 16.5px; color: #9aa093; }
+
+.offer ul {
+  list-style: none;
+  margin: 22px 0 30px;
+  display: grid;
+  gap: 12px;
+}
+
+.offer li {
+  font-size: 16px;
+  color: #d9dccf;
+  padding-left: 22px;
+  position: relative;
+}
+
+.offer li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 5px;
+  width: 7px;
+  height: 13px;
+  background: var(--volt);
+  transform: skewX(-18deg);
+}
+
+.offer .btn { margin-top: auto; align-self: flex-start; padding: 14px 28px; }
+
+/* the primary CTA is black now, sitting on the offer panel's near-black
+   background (#171913) — same edge-visibility fix as the hero */
+.offer .btn--volt {
+  background: #0a0b0a;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.offer .btn--volt:hover {
+  background: #000;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- coach ----------
+   One statement carries this section. Everything else stands down
+   so the claim is the only thing that raises its voice. */
+
+.coach {
+  padding-top: clamp(28px, 4vw, 44px);
+  padding-bottom: 0;
+}
+
+.coach__statement {
+  position: relative;
+  z-index: 0;
+  font-family: var(--font-kr-display);
+  font-weight: 300;
+  font-size: clamp(33px, 6vw, 66px);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.coach__statement .ln { display: block; }
+
+/* volt slab behind the operative phrase — the white-ground twin of the
+   hero's volt em, using the same skew as the logo slash */
+.coach__statement .mark {
+  position: relative;
+  font-style: normal;
+  display: inline-block;
+}
+
+.coach__statement .mark::before {
+  content: "";
+  position: absolute;
+  inset: 0.13em -0.16em 0.09em -0.16em;
+  background: var(--volt);
+  transform: skewX(-8deg) scaleX(1);
+  transform-origin: left center;
+  z-index: -1;
+}
+
+.coach__statement .mark i { font-style: normal; }
+
+.coach__id {
+  margin-top: clamp(6px, 1vw, 12px);
+}
+
+.coach__id h2 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.1;
+}
+
+/* Coach bio block — same transparent glass box as the mission below it:
+   blur, glow, rounded all sides, no volt left-edge accent. Clean and quiet. */
+.coach__prose {
+  margin-top: clamp(14px, 2vw, 22px);
+  position: relative;
+  z-index: 0;
+  background: rgba(16, 18, 16, 0.04);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: clamp(32px, 5vw, 48px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  overflow: visible;
+}
+
+/* volt edge glow — a slow animated border bloom that breathes like the
+   hero CTA, but subtler (lower opacity, slower cycle) so it doesn't
+   compete with the reading flow. The glow lives on a pseudo-element so
+   it never affects layout or text contrast. */
+.coach__prose::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 225, 0, 0.06) 25%,
+    transparent 50%,
+    rgba(255, 225, 0, 0.1) 60%,
+    transparent 75%,
+    rgba(255, 225, 0, 0.04) 100%
+  );
+  background-size: 300% 300%;
+  animation: coach-glow 8s ease-in-out infinite;
+}
+
+@keyframes coach-glow {
+  0%, 100% { background-position: 0% 50%; }
+  25%      { background-position: 100% 0%; }
+  50%      { background-position: 100% 100%; }
+  75%      { background-position: 0% 100%; }
+}
+
+/* glass inset highlight — same trick as the hero CTA: a hairline
+   white-on-dark edge that reads as a lit surface rather than a flat
+   rectangle */
+.coach__prose::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(16, 18, 16, 0.06);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coach__prose::before { animation: none; }
+}
+
+.coach__prose p {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 500;
+  max-width: 62ch;
+}
+
+.coach__prose p + p { margin-top: 14px; }
+
+@media (max-width: 640px) {
+  .coach__prose p { font-size: 18px; }
+}
+
+@media (min-width: 560px) {
+  .coach__prose p { max-width: 82ch; }
+}
+
+.coach__prose-slash {
+  position: relative;
+  padding-left: 22px;
+}
+
+.coach__prose-slash::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 10px;
+  height: 1.15em;
+  background: var(--volt);
+  transform: skewX(-14deg);
+}
+
+.coach__prose-align { padding-left: 22px; }
+
+/* cert: sits inside the prose glass card between bio text and mission.
+   Row layout — image left, label right. No separate glass box; it inherits
+   the prose surface. Hover to magnify, move away to shrink back. */
+.coach__cert {
+  margin-top: clamp(28px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: clamp(24px, 3.5vw, 32px);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 560px) {
+  .coach__cert {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .coach__cert-cap {
+    text-align: center;
+  }
+}
+
+.coach__cert a {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: default;
+}
+
+@media (min-width: 560px) {
+  .coach__cert a {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+}
+
+.coach__cert img {
+  display: block;
+  width: 100px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(16, 18, 16, 0.04), 0 2px 8px rgba(16, 18, 16, 0.08);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 1;
+  cursor: zoom-in;
+}
+
+.coach__cert a:hover img {
+  transform: scale(3);
+  z-index: 20;
+  box-shadow: 0 2px 0 rgba(16, 18, 16, 0.05), 0 8px 40px rgba(16, 18, 16, 0.18);
+  cursor: zoom-out;
+}
+
+.coach__cert-cap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.coach__cert-label {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.coach__cert-desc {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--grey);
+  line-height: 1.4;
+}
+
+@media (max-width: 560px) {
+  .coach__cert a {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .coach__cert img { margin-inline: auto; }
+
+  .coach__cert-cap { text-align: center; }
+}
+
+/* Mission — transparent glass box with toned backdrop blur and gentle
+   volt glow, but no colored left-edge accent. Cleaner, quieter, and
+   visually distinct from the prose card above it while still belonging
+   to the same glass vocabulary. */
+.coach__mission {
+  margin-top: clamp(20px, 3vw, 28px);
+  position: relative;
+  z-index: 0;
+  background: rgba(16, 18, 16, 0.04);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: clamp(28px, 4vw, 40px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.coach__mission::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 225, 0, 0.06) 25%,
+    transparent 50%,
+    rgba(255, 225, 0, 0.1) 60%,
+    transparent 75%,
+    rgba(255, 225, 0, 0.04) 100%
+  );
+  background-size: 300% 300%;
+  animation: coach-glow 8s ease-in-out infinite;
+}
+
+.coach__mission::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(16, 18, 16, 0.06);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coach__mission::before { animation: none; }
+}
+
+.coach__mission p {
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 52ch;
+}
+
+.coach__mission p + p { margin-top: 12px; }
+
+.coach__mission strong {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2em;
+  color: var(--ink);
+}
+
+.coach__mission strong::before {
+  content: "";
+  position: absolute;
+  inset: 0.06em -0.12em 0.02em -0.12em;
+  background: var(--volt);
+  transform: skewX(-8deg);
+  z-index: -1;
+}
+
+.coach__creds {
+  list-style: none;
+  margin-top: clamp(46px, 6.5vw, 84px);
+  border-top: 1px solid var(--ink);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .coach__creds { grid-template-columns: repeat(3, 1fr); }
+}
+
+.coach__creds li {
+  padding: 22px 24px 0 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.coach__creds li:last-child { border-bottom: 0; }
+
+@media (min-width: 640px) {
+  .coach__creds li { border-bottom: 0; padding-bottom: 0; }
+}
+
+.coach__creds b {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(18px, 2.1vw, 22px);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.coach__creds b::before {
+  content: "";
+  width: 8px;
+  height: 17px;
+  background: var(--volt);
+  transform: skewX(-18deg);
+  flex: 0 0 auto;
+}
+
+.coach__creds span {
+  display: block;
+  margin-top: 8px;
+  padding-bottom: 22px;
+  font-size: 13.5px;
+  color: var(--grey);
+  letter-spacing: 0.01em;
+}
+
+/* photo carousel: drag-to-spin 3D cylinder (see ui/3d-carousel.tsx). This
+   wrapper only owns the section's vertical rhythm — sizing, rotation and
+   the click-to-zoom lightbox all live in the component itself. */
+.coach__carousel {
+  margin-top: clamp(2px, 0.5vw, 6px);
+  padding: clamp(4px, 1vw, 10px) 0 clamp(12px, 2vw, 20px);
+}
+
+/* the section's one authored moment: the slab wipes in under the phrase */
+html.js .coach__statement .mark::before {
+  transform: skewX(-8deg) scaleX(0);
+  transition: transform 0.62s cubic-bezier(0.16, 0.84, 0.28, 1) 0.22s;
+}
+
+html.js .coach__statement.is-in .mark::before {
+  transform: skewX(-8deg) scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .coach__statement .mark::before {
+    transform: skewX(-8deg) scaleX(1);
+    transition: none;
+  }
+}
+
+/* ---------- FAQ ---------- */
+
+.faq { background: var(--paper-soft); }
+
+.faq__list {
+  display: grid;
+  gap: 10px;
+}
+
+/* trace outline: a volt line draws itself around the box on hover, like
+   a selection frame locking on — the row's own interactivity cue instead
+   of a shared divider between rows. */
+.faq__row {
+  position: relative;
+}
+
+.faq__trace {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* four independent edges rather than one dashed SVG rect — a dashed path
+   distorts unevenly on a box this much wider than it is tall, leaving
+   part of the outline visibly stuck on. Each edge is a plain 1D scale,
+   so it holds up at any aspect ratio, and a staggered delay per edge
+   makes the line travel clockwise around the box instead of all four
+   sides snapping in together. */
+.faq__trace-edge {
+  position: absolute;
+  background: var(--volt);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq__trace-edge--t,
+.faq__trace-edge--b {
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  transform: scaleX(0);
+}
+
+.faq__trace-edge--t { top: 0; transform-origin: left; }
+.faq__trace-edge--b { bottom: 0; transform-origin: right; transition-delay: 0.3s; }
+
+.faq__trace-edge--l,
+.faq__trace-edge--r {
+  top: 0;
+  width: 1.5px;
+  height: 100%;
+  transform: scaleY(0);
+}
+
+.faq__trace-edge--r { right: 0; transform-origin: top; transition-delay: 0.15s; }
+.faq__trace-edge--l { left: 0; transform-origin: bottom; transition-delay: 0.45s; }
+
+.faq__row:hover .faq__trace-edge--t,
+.faq__row:focus-within .faq__trace-edge--t,
+.faq__row:hover .faq__trace-edge--b,
+.faq__row:focus-within .faq__trace-edge--b {
+  transform: scaleX(1);
+}
+
+.faq__row:hover .faq__trace-edge--l,
+.faq__row:focus-within .faq__trace-edge--l,
+.faq__row:hover .faq__trace-edge--r,
+.faq__row:focus-within .faq__trace-edge--r {
+  transform: scaleY(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq__trace-edge { transition: none; }
+}
+
+.faq details {
+  padding: 20px 16px;
+  border-radius: 10px;
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "+";
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  flex: 0 0 auto;
+}
+
+.faq details[open] summary::after { transform: rotate(45deg); }
+
+.faq .a {
+  margin-top: 12px;
+  font-size: 14.5px;
+  color: var(--grey);
+  max-width: 62ch;
+}
+
+/* ---------- final CTA ---------- */
+
+.final-cta { text-align: center; }
+
+.final-cta h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  text-transform: uppercase;
+  font-size: clamp(34px, 6vw, 64px);
+  line-height: 1.08;
+}
+
+.final-cta .en-sub { margin-top: 12px; }
+
+.final-cta .btn-row { justify-content: center; }
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 44px 0 56px;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.foot__logo svg { height: 22px; width: auto; }
+
+.foot__meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.foot__meta a { font-weight: 600; color: var(--grey); }
+
+.foot__meta a:hover { color: var(--ink); }
+
+/* ---------- inner-page hero ---------- */
+
+.page-hero {
+  padding: clamp(60px, 9vw, 110px) 0 clamp(40px, 6vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  text-transform: uppercase;
+  font-size: clamp(38px, 7vw, 76px);
+  line-height: 1.05;
+}
+
+.page-hero .kr-big {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(17px, 2.4vw, 22px);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 14px;
+}
+
+.page-hero .lede {
+  margin-top: 18px;
+  max-width: 58ch;
+  color: var(--grey);
+  font-size: 15.5px;
+}
+
+/* ---------- programme weeks ---------- */
+
+.week {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 720px) {
+  .week { grid-template-columns: 160px 1fr; }
+}
+
+.week__num {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 32px);
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.week__num i {
+  font-style: normal;
+  display: inline-block;
+  background: var(--volt);
+  padding: 0 8px;
+  transform: skewX(-8deg);
+}
+
+.week h3 { font-size: 18px; font-weight: 600; }
+
+.week .en-sub { margin: 2px 0 10px; }
+
+.week p { font-size: 14.5px; color: var(--grey); max-width: 66ch; }
+
+/* ---------- programme summary (hero bullet list) ---------- */
+
+.page-hero ul {
+  list-style: none;
+  margin: 22px 0 0;
+  display: grid;
+  gap: 12px;
+  max-width: 62ch;
+}
+
+.page-hero li {
+  font-size: 15.5px;
+  color: var(--grey);
+  padding-left: 22px;
+  position: relative;
+}
+
+.page-hero li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 5px;
+  width: 7px;
+  height: 13px;
+  background: var(--volt);
+  transform: skewX(-18deg);
+}
+
+/* ---------- price card ---------- */
+
+.price-card {
+  background: var(--ink);
+  color: #f2f4ec;
+  border-radius: var(--radius-card);
+  padding: clamp(34px, 5vw, 56px);
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 820px) {
+  .price-card { grid-template-columns: 1fr auto; }
+}
+
+.price-card h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.4vw, 34px);
+  color: #fff;
+}
+
+.price-card .price {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(34px, 5vw, 48px);
+  color: var(--volt);
+  line-height: 1;
+  margin-top: 10px;
+}
+
+.price-card .note { font-size: 13px; color: #9aa093; margin-top: 10px; }
+
+/* ---------- form ---------- */
+
+.form-wrap {
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: clamp(26px, 4vw, 44px);
+}
+
+.form-grid { display: grid; gap: 20px; }
+
+@media (min-width: 640px) {
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .form-grid .full { grid-column: 1 / -1; }
+}
+
+.field label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.field label span {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-left: 6px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  transition: border-color 0.15s ease;
+}
+
+.field textarea { resize: vertical; min-height: 120px; }
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.form-note { font-size: 13px; color: var(--muted); margin-top: 16px; }
+
+/* ---------- reveal on scroll ---------- */
+
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+html.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .offer { transition: none; }
+}
+
+}

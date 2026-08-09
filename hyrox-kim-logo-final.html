@@ -1,0 +1,103 @@
+<meta charset="UTF-8">
+<title>HYROX KIM — The Split</title>
+<style>
+  :root{
+    --bg:#EFF0EA; --panel:#FFFFFF; --ink:#101210; --muted:#6B7065;
+    --line:#D8DAD0; --volt:#FFE100; --volt-ink:#101210;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#101210; --panel:#171913; --ink:#F2F4EC; --muted:#9AA093; --line:#2A2D26; }
+  }
+  :root[data-theme="dark"]{ --bg:#101210; --panel:#171913; --ink:#F2F4EC; --muted:#9AA093; --line:#2A2D26; }
+  :root[data-theme="light"]{ --bg:#EFF0EA; --panel:#FFFFFF; --ink:#101210; --muted:#6B7065; --line:#D8DAD0; }
+
+  html,body{background:var(--bg); color:var(--ink);}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:56px 24px 80px;}
+
+  .eyebrow{font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  h1{font-family:"Futura-CondensedExtraBold","HelveticaNeue-CondensedBlack","Arial Narrow",Impact,sans-serif;
+     font-weight:900; text-transform:uppercase; font-size:clamp(40px,7vw,72px); line-height:.95; margin:0 0 8px;}
+  .intro{color:var(--muted); max-width:60ch; margin-top:10px; font-size:15px;}
+
+  .hero-tile{border-radius:6px; padding:clamp(28px,6vw,64px); display:flex; align-items:center; justify-content:center; overflow-x:auto; margin-top:36px;}
+  .hero-tile svg{width:min(560px,100%); height:auto; display:block;}
+
+  .section-label{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin:48px 0 14px;}
+
+  .alts{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px;}
+  .alt{border-radius:6px; padding:24px 14px; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); min-height:120px;}
+  .alt svg{width:100%; max-width:220px; height:auto; display:block;}
+
+  .on-ink  {background:#101210; --lgMain:#F2F4EC; --lgAcc:#FFE100;}
+  .on-paper{background:#F7F8F3; --lgMain:#101210; --lgAcc:#FFE100; border:1px solid #D8DAD0;}
+  .on-volt {background:#FFE100; --lgMain:#101210; --lgAcc:#101210;}
+  .mono-ink{background:#F7F8F3; --lgMain:#101210; --lgAcc:#101210; border:1px solid #D8DAD0;}
+  .mono-wht{background:#101210; --lgMain:#F2F4EC; --lgAcc:#F2F4EC;}
+
+  .lg-main{fill:var(--lgMain);} .lg-acc{fill:var(--lgAcc);}
+
+  .avatar-row{display:flex; gap:18px; align-items:center; flex-wrap:wrap;}
+  .avatar{width:96px; height:96px; border-radius:50%; overflow:hidden; display:flex; align-items:center; justify-content:center; flex:0 0 auto;}
+  .avatar svg{width:150%; height:auto;}
+  .avatar-note{font-size:13px; color:var(--muted); margin-top:8px;}
+
+  .swatches{display:flex; gap:16px; margin-top:10px; flex-wrap:wrap;}
+  .sw-item{display:flex; flex-direction:column; gap:7px; width:84px;}
+  .sw{width:44px; height:44px; border-radius:4px; border:1px solid var(--line);}
+  .sw-item span{font-size:10.5px; color:var(--muted); line-height:1.3;}
+
+  .footnote{margin-top:56px; padding-top:24px; border-top:1px solid var(--line); font-size:13.5px; color:var(--muted); max-width:64ch;}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mark">
+      <g transform="skewX(-6)" style="font-family:'Futura-CondensedExtraBold','HelveticaNeue-CondensedBlack','Arial Narrow',Impact,sans-serif;font-weight:900">
+        <text x="14" y="74" font-size="78" letter-spacing="1" class="lg-main">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" class="lg-acc"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" class="lg-acc">KIM</text>
+      </g>
+      <text x="16" y="112" font-size="17" letter-spacing="4" class="lg-main"
+        style="font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:800">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Logo · Final direction · 최종 시안</div>
+    <h1>Hyrox Kim — The Split</h1>
+    <p class="intro">Bright, high-visibility yellow accent — punchier than a muted gold, closer to race-day signage. Subtitle reads simply 온라인 코칭 · ONLINE COACHING.</p>
+  </header>
+
+  <div class="hero-tile on-ink"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+
+  <div class="section-label">Colorways</div>
+  <div class="alts">
+    <div class="alt on-paper"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+    <div class="alt on-volt"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+    <div class="alt mono-ink"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+    <div class="alt mono-wht"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+  </div>
+
+  <div class="section-label">Avatar test</div>
+  <div class="avatar-row">
+    <div class="avatar on-ink"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+    <div class="avatar on-volt"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+    <div class="avatar on-paper"><svg viewBox="0 0 470 126"><use href="#mark"/></svg></div>
+  </div>
+  <p class="avatar-note">At profile-picture size the slash still reads clearly; the subtitle line fades to texture, which is expected — that's normal for any wordmark at this crop.</p>
+
+  <div class="section-label">Palette</div>
+  <div class="swatches">
+    <div class="sw-item"><div class="sw" style="background:#101210"></div><span>Ink 101210</span></div>
+    <div class="sw-item"><div class="sw" style="background:#FFE100"></div><span>Yellow FFE100</span></div>
+    <div class="sw-item"><div class="sw" style="background:#F7F8F3"></div><span>Paper F7F8F3</span></div>
+  </div>
+
+  <p class="footnote">Type for final production files — Latin: Anton or Archivo Black (free) / Tungsten (commercial). Korean: Black Han Sans (free, Google Fonts), matched to the condensed weight of the Latin. These previews use your system's condensed fallback fonts.</p>
+</div>

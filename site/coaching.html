@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1:1 온라인 코칭 신청 — HYROX KIM</title>
+<meta name="description" content="개인 맞춤 하이록스 코칭. 매주 피드백과 조정으로 목표 기록까지 함께 갑니다. Apply for personalised 1:1 online HYROX coaching.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mark">
+      <g transform="skewX(-6)" style="font-family:'Anton','Futura-CondensedExtraBold','Arial Narrow',Impact,sans-serif">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#101210">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#FFE100"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#FFE100">KIM</text>
+      </g>
+      <text x="16" y="112" font-size="17" letter-spacing="4" fill="#101210"
+        style="font-family:'Pretendard Variable','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:800">온라인 코칭 · ONLINE COACHING</text>
+    </g>
+    <g id="mark-compact">
+      <g transform="skewX(-6)" style="font-family:'Anton','Futura-CondensedExtraBold','Arial Narrow',Impact,sans-serif">
+        <text x="14" y="74" font-size="78" letter-spacing="1" fill="#101210">HYROX</text>
+        <polygon points="252,8 274,8 236,86 214,86" fill="#FFE100"/>
+        <text x="272" y="74" font-size="78" letter-spacing="1" fill="#101210">KIM</text>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="shell nav__inner">
+    <a class="nav__logo" href="index.html" aria-label="HYROX KIM 홈">
+      <svg viewBox="0 0 470 92"><use href="#mark-compact"/></svg>
+    </a>
+    <ul class="nav__links">
+      <li class="nav__hide-sm"><a href="program.html">하이록스 프로그램</a></li>
+      <li class="nav__hide-sm"><a href="coaching.html">1:1 코칭</a></li>
+      <li class="nav__hide-sm"><a href="index.html#coach">소개</a></li>
+      <li><a class="nav__cta" href="https://ig.me/m/kim.jungwon1"
+        target="_blank" rel="noopener noreferrer">DM 문의 · Instagram</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="shell">
+      <p class="eyebrow reveal">Premium · 1:1</p>
+      <h1 id="page-title" class="reveal">Online<span class="slash" aria-hidden="true"></span>Coaching
+        <span class="kr-big">1:1 온라인 코칭 신청하기</span>
+      </h1>
+    </div>
+  </section>
+
+  <section aria-labelledby="apply-title">
+    <div class="shell--narrow">
+      <div class="section-head reveal">
+        <p class="eyebrow">Application</p>
+        <h2 id="apply-title">코칭 신청서</h2>
+        <p class="en-sub">Coaching application</p>
+      </div>
+
+      <form id="apply-form" class="form-wrap reveal">
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">이름 <span>Name</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">이메일 <span>Email</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-instagram">인스타그램 아이디 <span>Instagram ID</span></label>
+            <input id="f-instagram" name="instagram" type="text" placeholder="@username">
+          </div>
+          <div class="field">
+            <label for="f-help">어떤 부분에 도움이 필요하신가요? <span>What do you need help with?</span></label>
+            <select id="f-help" name="help">
+              <option value="">선택...</option>
+              <option value="하이록스 종합 훈련">하이록스 종합 훈련 · Hyrox overall</option>
+              <option value="러닝 능력 향상">러닝 능력 향상 · Running</option>
+              <option value="근력 &amp; 파워 향상">근력 &amp; 파워 향상 · Strength</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="f-fitness">현재 체력 수준은 어느 정도인가요? <span>Current fitness level</span></label>
+            <select id="f-fitness" name="fitness">
+              <option value="">선택...</option>
+              <option value="초급">초급 · Beginner</option>
+              <option value="중급">중급 · Intermediate</option>
+              <option value="고급">고급 · Advanced</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="f-race">목표 대회 / 날짜 <span>Target race</span></label>
+            <input id="f-race" name="race" type="text" placeholder="예: HYROX Seoul, 10월">
+          </div>
+        </div>
+        <div class="btn-row" style="margin-top:28px">
+          <button class="btn btn--ink" type="submit">
+            <strong>신청서 보내기</strong>
+            <span>Send Application</span>
+          </button>
+        </div>
+        <p class="form-note">보내기를 누르면 작성하신 내용이 담긴 이메일이 열립니다.
+          그대로 전송해 주시면 24–48시간 내에 답변드립니다.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="shell foot">
+    <a class="foot__logo" href="index.html" aria-label="HYROX KIM 홈">
+      <svg viewBox="0 0 470 126"><use href="#mark"/></svg>
+    </a>
+    <p class="foot__meta">
+      © 2026 HYROX KIM · <a href="mailto:j15611943893@gmail.com">j15611943893@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<script type="module" src="script.js"></script></body>
+</html>

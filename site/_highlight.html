@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>강조 스타일 시안 — HYROX KIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { background: var(--ink); color: #f2f4ec; }
+
+  .intro { padding: 32px 0 8px; }
+  .intro p { color: #9aa093; font-size: 13.5px; line-height: 1.85; }
+  .intro b { color: #fff; font-weight: 500; }
+
+  .replay {
+    margin-top: 18px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--volt);
+    border: 0;
+    border-radius: var(--radius-pill);
+    padding: 11px 24px;
+    cursor: pointer;
+  }
+  .replay:hover { background: var(--volt-deep); }
+
+  .demo { padding: 46px 0 52px; border-top: 1px solid #2a2d26; }
+
+  .demo__tag {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .demo__tag b {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 27px;
+    letter-spacing: 0.03em;
+    color: #fff;
+  }
+  .demo__tag i { font-style: normal; font-size: 12.5px; color: #9aa093; }
+
+  .demo h1 {
+    font-family: var(--font-display);
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: clamp(40px, 6.4vw, 76px);
+    line-height: 1.04;
+    letter-spacing: 0.005em;
+    color: #fff;
+  }
+  .demo h1 .line { display: block; }
+  /* Per-line clearance, not a blanket value: "Smarter." ends on a period (no
+     real descender) so its mark sits close under the row; "Stronger." ends on
+     a 'g' with a true descender and needs more room. At this line-height the
+     rows sit almost flush, so a mark sized for the descender would plough
+     into the row below if reused on "Smarter." — measured via canvas
+     actualBoundingBoxDescent, not guessed. */
+  .demo h1 .line:nth-of-type(1) { --d: 0s; --uy: 0.08em; --hy-b: 0.10em; }
+  .demo h1 .line:nth-of-type(2) { --d: 0.13s; --uy: 0.19em; --hy-b: 0.22em; }
+
+  /* every variant starts from the same place: white word, nothing drawn */
+  .demo h1 em {
+    font-style: normal;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+  }
+
+  /* ---------- A · 옐로 글자 (원래 방식) ---------- */
+  .h-a h1 em { transition: color 0.5s ease-out var(--d, 0s); }
+  .h-a.is-in h1 em { color: var(--volt); }
+
+  /* ---------- B · 밑줄 ---------- */
+  .h-b h1 em::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(-1 * var(--uy));
+    height: 0.07em;
+    background: var(--volt);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.62s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+  }
+  .h-b.is-in h1 em::after { transform: scaleX(1); }
+
+  /* ---------- C · 기울어진 밑줄 (로고 슬래시 각도) ---------- */
+  .h-c h1 em::after {
+    content: "";
+    position: absolute;
+    left: -0.04em;
+    right: -0.04em;
+    bottom: calc(-1 * var(--uy));
+    height: 0.15em;
+    background: var(--volt);
+    transform: skewX(-18deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.62s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+  }
+  .h-c.is-in h1 em::after { transform: skewX(-18deg) scaleX(1); }
+
+  /* ---------- D · 형광펜 박스 ---------- */
+  .h-d h1 em {
+    transition: color 0.3s ease-out calc(var(--d, 0s) + 0.16s);
+  }
+  .h-d.is-in h1 em { color: var(--ink); }
+  .h-d h1 em::before {
+    content: "";
+    position: absolute;
+    inset: -0.03em -0.11em calc(-1 * var(--hy-b)) -0.11em;
+    background: var(--volt);
+    z-index: -1;
+    transform: skewX(-8deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+  }
+  .h-d.is-in h1 em::before { transform: skewX(-8deg) scaleX(1); }
+
+  /* ---------- E · 옐로 글자 + 기울어진 밑줄 ---------- */
+  .h-e h1 em { transition: color 0.5s ease-out var(--d, 0s); }
+  .h-e.is-in h1 em { color: var(--volt); }
+  .h-e h1 em::after {
+    content: "";
+    position: absolute;
+    left: -0.04em;
+    right: -0.04em;
+    bottom: calc(-1 * var(--uy));
+    height: 0.12em;
+    background: var(--volt);
+    opacity: 0.45;
+    transform: skewX(-18deg) scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.62s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--d, 0s) + 0.1s);
+  }
+  .h-e.is-in h1 em::after { transform: skewX(-18deg) scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo h1 em,
+    .demo h1 em::before,
+    .demo h1 em::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell intro">
+  <p>
+    <b>강조 스타일 5종.</b> 글자는 전부 흰색이고, Smarter · Stronger 두 단어의 강조 방식만 다릅니다.<br>
+    각 시안은 화면에 들어올 때 왼쪽에서 오른쪽으로 그려집니다. 번호를 알려주시면 그대로 반영합니다.<br>
+    <b>Five ways to mark the two words.</b> Each draws in from the left. Tell me a letter.
+  </p>
+  <button class="replay" type="button" id="replay">다시 재생 · Replay all</button>
+</div>
+
+<section class="shell demo h-a">
+  <div class="demo__tag"><b>A · 옐로 글자</b><i>원래 방식 — 단어 자체를 노란색으로</i></div>
+  <h1>
+    <span class="line">Train <em>Smarter.</em></span>
+    <span class="line">Race <em>Stronger.</em></span>
+  </h1>
+</section>
+
+<section class="shell demo h-b">
+  <div class="demo__tag"><b>B · 밑줄</b><i>얇은 노란 밑줄이 왼쪽에서 그어짐</i></div>
+  <h1>
+    <span class="line">Train <em>Smarter.</em></span>
+    <span class="line">Race <em>Stronger.</em></span>
+  </h1>
+</section>
+
+<section class="shell demo h-c">
+  <div class="demo__tag"><b>C · 기울어진 밑줄</b><i>로고 슬래시와 같은 −18° 각도</i></div>
+  <h1>
+    <span class="line">Train <em>Smarter.</em></span>
+    <span class="line">Race <em>Stronger.</em></span>
+  </h1>
+</section>
+
+<section class="shell demo h-d">
+  <div class="demo__tag"><b>D · 형광펜</b><i>노란 박스가 채워지고 글자는 검정으로</i></div>
+  <h1>
+    <span class="line">Train <em>Smarter.</em></span>
+    <span class="line">Race <em>Stronger.</em></span>
+  </h1>
+</section>
+
+<section class="shell demo h-e">
+  <div class="demo__tag"><b>E · 옐로 글자 + 밑줄</b><i>A와 C를 합친 것</i></div>
+  <h1>
+    <span class="line">Train <em>Smarter.</em></span>
+    <span class="line">Race <em>Stronger.</em></span>
+  </h1>
+</section>
+
+<script>
+  var demos = [].slice.call(document.querySelectorAll(".demo"));
+
+  function play() {
+    demos.forEach(function (d) { d.classList.remove("is-in"); });
+    // force a reflow so removing and re-adding actually restarts the transition
+    void document.body.offsetWidth;
+    setTimeout(function () {
+      demos.forEach(function (d) { d.classList.add("is-in"); });
+    }, 90);
+  }
+
+  document.getElementById("replay").addEventListener("click", play);
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    demos.forEach(function (d) { io.observe(d); });
+  } else {
+    demos.forEach(function (d) { d.classList.add("is-in"); });
+  }
+</script>
+
+</body>
+</html>

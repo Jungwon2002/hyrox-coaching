@@ -1,0 +1,362 @@
+<title>HYROX KIM — 모바일 미리보기</title>
+
+<style>
+  :root {
+    --volt: #ffe100;
+    --ground: #f1f2ed;
+    --panel: #ffffff;
+    --hairline: #dcded4;
+    --text: #101210;
+    --muted: #6c7167;
+    --shadow: 0 26px 60px rgba(16, 18, 16, 0.16);
+    --bezel: #c9ccc1;
+    --bezel-in: #eceee6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #131512;
+      --panel: #1b1e19;
+      --hairline: #2d3129;
+      --text: #e9ebe3;
+      --muted: #8d9289;
+      --shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+      --bezel: #2b2f28;
+      --bezel-in: #0a0b0a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #131512;
+    --panel: #1b1e19;
+    --hairline: #2d3129;
+    --text: #e9ebe3;
+    --muted: #8d9289;
+    --shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+    --bezel: #2b2f28;
+    --bezel-in: #0a0b0a;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #f1f2ed;
+    --panel: #ffffff;
+    --hairline: #dcded4;
+    --text: #101210;
+    --muted: #6c7167;
+    --shadow: 0 26px 60px rgba(16, 18, 16, 0.16);
+    --bezel: #c9ccc1;
+    --bezel-in: #eceee6;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+      "Apple SD Gothic Neo", "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 18px 40px;
+    box-sizing: border-box;
+  }
+
+  /* ---- control bar ---- */
+
+  .bar {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    padding: 12px 16px;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 15px;
+    box-sizing: border-box;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* the skewed slash from the HYROX KIM wordmark */
+  .brand::before {
+    content: "";
+    width: 8px;
+    height: 17px;
+    background: var(--volt);
+    transform: skewX(-18deg);
+    flex: 0 0 auto;
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .tab {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 8px;
+    padding: 7px 11px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .tab:hover { color: var(--text); }
+
+  .tab[aria-selected="true"] { color: var(--text); }
+
+  .tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    bottom: 1px;
+    height: 3px;
+    background: var(--volt);
+    transform: skewX(-18deg);
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  select {
+    font: inherit;
+    font-size: 12.5px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+    background: var(--ground);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 6px 9px;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--volt);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* ---- the phone ---- */
+
+  /* flex-start matters: the stage has an explicit height, and the default
+     `stretch` would squash the phone to it and clip the page inside */
+  .stage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .phone {
+    background: var(--bezel-in);
+    border: 9px solid var(--bezel);
+    border-radius: 40px;
+    box-shadow: var(--shadow);
+    transform-origin: top center;
+    overflow: hidden;
+  }
+
+  .phone iframe {
+    display: block;
+    border: 0;
+    background: #fff;
+    border-radius: 31px;
+  }
+
+  .fallback {
+    display: none;
+    max-width: 46ch;
+    padding: 18px 20px;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 13px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .is-blocked .stage { display: none; }
+  .is-blocked .fallback { display: block; }
+
+  /* ---- meta ---- */
+
+  .meta {
+    max-width: 900px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .meta b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tab { transition: none; }
+  }
+</style>
+
+<div class="wrap" id="wrap">
+  <div class="bar">
+    <span class="brand">HYROX KIM · 모바일</span>
+
+    <div class="tabs" role="tablist" aria-label="페이지 선택">
+      <button class="tab" role="tab" data-page="index" aria-selected="true">홈</button>
+      <button class="tab" role="tab" data-page="program" aria-selected="false">4주 프로그램</button>
+      <button class="tab" role="tab" data-page="coaching" aria-selected="false">1:1 코칭</button>
+    </div>
+
+    <span class="spacer"></span>
+
+    <label class="field" for="device">Device
+      <select id="device">
+        <option value="390x844">iPhone 14 · 390 × 844</option>
+        <option value="375x667">iPhone SE · 375 × 667</option>
+        <option value="430x932">iPhone Pro Max · 430 × 932</option>
+        <option value="412x915">Pixel 8 · 412 × 915</option>
+        <option value="360x780">Galaxy S · 360 × 780</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="stage">
+    <div class="phone" id="phone">
+      <iframe id="frame" title="HYROX KIM 모바일 미리보기" scrolling="yes"></iframe>
+    </div>
+  </div>
+
+  <p class="fallback">
+    이 뷰어는 페이지를 프레임 안에서 렌더링합니다. 프레임이 차단된 환경에서는
+    표시되지 않으니, 로컬 미리보기를 사용해 주세요.<br>
+    This viewer renders the site inside a frame. If frames are blocked here,
+    use the local preview instead.
+  </p>
+
+  <p class="meta">
+    실제 <b>site/</b> 파일을 그대로 렌더링합니다 — 영상은 스틸 한 장으로 대체됩니다.<br>
+    Rendered from the real source files. The hero video stands in as a still frame.<br>
+    마지막 업데이트 · Last updated <b id="built"></b>
+  </p>
+</div>
+
+<script>
+  var DATA = /*__PAYLOAD__*/ null;
+
+  var frame = document.getElementById("frame");
+  var phone = document.getElementById("phone");
+  var wrap = document.getElementById("wrap");
+  var deviceEl = document.getElementById("device");
+  var tabs = [].slice.call(document.querySelectorAll(".tab"));
+  var current = "index";
+
+  document.getElementById("built").textContent = DATA.built;
+
+  // the control-bar Korean should match the site's own type
+  var chrome = document.createElement("style");
+  chrome.textContent = DATA.fonts;
+  document.head.appendChild(chrome);
+
+  function compose() {
+    return '<!doctype html><html lang="ko"><head><meta charset="utf-8">' +
+      "<style>" + DATA.fonts + DATA.css + "</style></head><body>" +
+      DATA.pages[current] +
+      "</body></html>";
+  }
+
+  function painted() {
+    try {
+      var d = frame.contentDocument;
+      return !!(d && d.body && d.body.firstChild);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function render() {
+    var markup = compose();
+    frame.srcdoc = markup;
+
+    // srcdoc is the clean path, but some sandboxes disallow it — fall back to
+    // writing straight into the frame before giving up and explaining why
+    setTimeout(function () {
+      if (!painted()) {
+        try {
+          frame.removeAttribute("srcdoc");
+          var d = frame.contentDocument;
+          d.open();
+          d.write(markup);
+          d.close();
+        } catch (e) { /* handled by the check below */ }
+      }
+      setTimeout(function () {
+        wrap.classList.toggle("is-blocked", !painted());
+      }, 500);
+    }, 450);
+  }
+
+  function applyDevice() {
+    var parts = deviceEl.value.split("x");
+    var w = parseInt(parts[0], 10);
+    var h = parseInt(parts[1], 10);
+    frame.style.width = w + "px";
+    frame.style.height = h + "px";
+
+    var room = window.innerHeight - 210;
+    var scale = Math.min(1, room / (h + 18));
+    phone.style.transform = "scale(" + scale.toFixed(3) + ")";
+    document.querySelector(".stage").style.height = (h + 18) * scale + "px";
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      current = tab.dataset.page;
+      tabs.forEach(function (t) {
+        t.setAttribute("aria-selected", String(t === tab));
+      });
+      render();
+    });
+  });
+
+  deviceEl.addEventListener("change", applyDevice);
+  window.addEventListener("resize", applyDevice);
+
+  applyDevice();
+  render();
+
+  // if the host blocks frames, say so rather than showing an empty slab
+  setTimeout(function () {
+    var doc = null;
+    try { doc = frame.contentDocument; } catch (e) { doc = null; }
+    if (!doc || !doc.body || !doc.body.firstChild) wrap.classList.add("is-blocked");
+  }, 1200);
+</script>

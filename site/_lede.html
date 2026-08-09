@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>클로징 문구 시안 — HYROX KIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { background: var(--ink); color: #f2f4ec; }
+
+  .intro { padding: 32px 0 8px; }
+  .intro p { color: #9aa093; font-size: 13.5px; line-height: 1.85; }
+  .intro b { color: #fff; font-weight: 500; }
+
+  .demo { padding: 44px 0 48px; border-top: 1px solid #2a2d26; }
+
+  .demo__tag {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .demo__tag b {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    color: #fff;
+  }
+  .demo__tag i { font-style: normal; font-size: 12.5px; color: #9aa093; }
+
+  /* shared mini hero context so each variant is judged next to the real
+     buttons, not floating in isolation */
+  .demo .btn-row { margin-top: 0; margin-bottom: 20px; }
+
+  /* ---------- A: volt pill chip ---------- */
+  .lede-a {
+    display: inline-block;
+    background: var(--volt);
+    color: var(--ink);
+    border-radius: var(--radius-pill);
+    padding: 9px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+  }
+
+  /* ---------- B: no box, one accent phrase ---------- */
+  .lede-b {
+    max-width: 40ch;
+    font-size: 14px;
+    color: #a7ac9f;
+    line-height: 1.7;
+  }
+  .lede-b em {
+    font-style: normal;
+    color: var(--volt);
+    font-weight: 600;
+  }
+
+  /* ---------- C: ghost outline chip ---------- */
+  .lede-c {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: var(--radius-pill);
+    padding: 9px 18px 9px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #eef0e7;
+  }
+  .lede-c::before {
+    content: "";
+    width: 6px;
+    height: 14px;
+    background: var(--volt);
+    transform: skewX(-18deg);
+    flex: 0 0 auto;
+  }
+
+  /* ---------- D: underlined statement ---------- */
+  .lede-d {
+    position: relative;
+    display: inline-block;
+    max-width: 40ch;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #eef0e7;
+    line-height: 1.7;
+    padding-bottom: 10px;
+  }
+  .lede-d::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    background: var(--volt);
+    transform: skewX(-18deg);
+  }
+</style>
+</head>
+<body>
+
+<div class="shell intro">
+  <p>
+    <b>클로징 문구 4종.</b> 버튼 아래 마지막 한 줄을 어떻게 표현할지 비교합니다. 실제 버튼과 같은 배경에서 비교하세요.<br>
+    <b>Four ways to close the hero.</b> Compared against the real buttons on the real dark ground.
+  </p>
+</div>
+
+<section class="shell demo">
+  <div class="demo__tag"><b>A · 볼트 필 칩</b><i>버튼과 같은 필 반경, 잉크 텍스트 — 작은 태그처럼</i></div>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+    <a class="btn btn--paper" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+  </div>
+  <p class="lede-a">맞춤형 근거 기반 코칭으로 목표 달성을 돕습니다.</p>
+</section>
+
+<section class="shell demo">
+  <div class="demo__tag"><b>B · 박스 없음</b><i>텍스트만, 핵심 구절만 볼트 컬러</i></div>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+    <a class="btn btn--paper" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+  </div>
+  <p class="lede-b"><em>맞춤형 근거 기반 코칭</em>으로 목표 달성을 돕습니다.</p>
+</section>
+
+<section class="shell demo">
+  <div class="demo__tag"><b>C · 고스트 아웃라인</b><i>테두리만, 채움 없음 — 슬래시 틱 하나</i></div>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+    <a class="btn btn--paper" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+  </div>
+  <p class="lede-c">맞춤형 근거 기반 코칭으로 목표 달성을 돕습니다.</p>
+</section>
+
+<section class="shell demo">
+  <div class="demo__tag"><b>D · 밑줄</b><i>텍스트 아래 기울어진 볼트 밑줄 — 로고 각도</i></div>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+    <a class="btn btn--paper" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+  </div>
+  <p class="lede-d">맞춤형 근거 기반 코칭으로 목표 달성을 돕습니다.</p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T00:00:00.000Z",
+  "title": "Design System: HYROX KIM",
+  "extensions": {
+    "colorMeta": {
+      "volt": {
+        "role": "primary",
+        "displayName": "Volt",
+        "canonical": "#ffe100",
+        "tonalRamp": ["#7a6600", "#a68900", "#d1ac00", "#f5d800", "#ffe100", "#ffe94d", "#fff08a", "#fffbd1"]
+      },
+      "volt-deep": {
+        "role": "primary",
+        "displayName": "Volt Deep",
+        "canonical": "#f5d800",
+        "tonalRamp": ["#5c4c00", "#7a6600", "#a68900", "#d1ac00", "#f5d800", "#ffe100", "#ffe94d", "#fff08a"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#101210",
+        "tonalRamp": ["#000000", "#101210", "#1c1f1a", "#2c302a", "#43473f", "#6b6f63", "#9a9e8f", "#e7e9e1"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#101210", "#43473f", "#83887b", "#b7bbad", "#d8dace", "#e7e9e1", "#f7f8f3", "#ffffff"]
+      },
+      "paper-soft": {
+        "role": "neutral",
+        "displayName": "Paper Soft",
+        "canonical": "#f7f8f3",
+        "tonalRamp": ["#43473f", "#83887b", "#b7bbad", "#d8dace", "#e7e9e1", "#eff0e9", "#f7f8f3", "#ffffff"]
+      },
+      "grey": {
+        "role": "neutral",
+        "displayName": "Grey",
+        "canonical": "#43473f",
+        "tonalRamp": ["#101210", "#22241f", "#33362e", "#43473f", "#5b6055", "#767b6d", "#9a9e8f", "#c3c6ba"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#83887b",
+        "tonalRamp": ["#33362e", "#43473f", "#5b6055", "#676c5f", "#767b6d", "#83887b", "#a3a795", "#c3c6ba"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#e7e9e1",
+        "tonalRamp": ["#83887b", "#a3a795", "#b7bbad", "#c3c6ba", "#d8dace", "#e7e9e1", "#eff0e9", "#f7f8f3"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only, uppercase, weight 200." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (Method, Offers), uppercase, weight 300." },
+      "title": { "displayName": "Title", "purpose": "Card and component headings, set in the body face at weight 600." },
+      "body": { "displayName": "Body", "purpose": "Running copy, weight 400, word-break: keep-all for Korean." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows and kickers, uppercase, weight 500, wide tracking." }
+    },
+    "shadows": [
+      { "name": "cta-lit-volt", "value": "0 10px 26px rgba(16,18,16,0.5), 0 0 24px rgba(255,225,0,0.3), inset 0 1px 0 rgba(255,255,255,0.55)", "purpose": "Hero primary CTA at rest: cast shadow + color bloom + top-edge highlight." },
+      { "name": "cta-lit-paper", "value": "0 10px 26px rgba(16,18,16,0.5), 0 0 20px rgba(255,255,255,0.16), inset 0 1px 0 rgba(255,255,255,0.9)", "purpose": "Hero secondary CTA at rest, same lit construction with a white bloom." },
+      { "name": "button-hover", "value": "0 10px 28px rgba(16,18,16,0.14)", "purpose": "Soft lift shadow on standard button hover, outside the hero." }
+    ],
+    "motion": [
+      { "name": "cta-breathe", "value": "3.6s ease-in-out infinite, alternating bloom radius 20px→38px and opacity 0.24→0.5", "purpose": "Standing glow pulse on the hero primary CTA only, gated to hero-on-screen and disabled under prefers-reduced-motion." },
+      { "name": "reveal", "value": "opacity + translateY(22px)→0, 0.7s cubic-bezier(0.2,0.6,0.2,1)", "purpose": "Default scroll-triggered reveal for most sections." },
+      { "name": "headline-ignite", "value": "color 0.55s ease-out + text-shadow 0.8s ease-out, delayed until ~0.7–0.86s so it fires after the white headline has fully faded in", "purpose": "The accent words in the hero headline (Smarter./Stronger.) turn volt with a glow bloom as a distinct second beat after the white text arrives, staggered 160ms between the two lines." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "560px" },
+      { "name": "md", "value": "720px" },
+      { "name": "lg", "value": "860px" },
+      { "name": "hero", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Hero, Lit)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Volt pill CTA as used on the dark hero: cast shadow, color bloom, breathing glow loop.",
+      "html": "<a class=\"ds-btn ds-btn-volt\" href=\"#\"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>",
+      "css": ".ds-btn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center; padding: 14px 44px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; text-decoration: none; } .ds-btn strong { font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.3; } .ds-btn span { font-size: 10.5px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; opacity: 0.7; line-height: 1.4; } .ds-btn-volt { background: #ffe100; color: #101210; box-shadow: 0 10px 26px rgba(16,18,16,0.5), 0 0 24px rgba(255,225,0,0.3), inset 0 1px 0 rgba(255,255,255,0.55); animation: ds-cta-breathe 3.6s ease-in-out infinite; } .ds-btn-volt:hover { background: #f5d800; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(16,18,16,0.55), 0 0 42px rgba(255,225,0,0.62), inset 0 1px 0 rgba(255,255,255,0.7); } .ds-btn-volt:focus-visible { outline: 3px solid #101210; outline-offset: 3px; } @keyframes ds-cta-breathe { 0%, 100% { box-shadow: 0 10px 26px rgba(16,18,16,0.5), 0 0 20px rgba(255,225,0,0.24), inset 0 1px 0 rgba(255,255,255,0.55); } 50% { box-shadow: 0 10px 26px rgba(16,18,16,0.5), 0 0 38px rgba(255,225,0,0.5), inset 0 1px 0 rgba(255,255,255,0.55); } }"
+    },
+    {
+      "name": "Secondary Button (Hero, Lit)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "White pill CTA as used on the dark hero, same lit construction without the breathing loop.",
+      "html": "<a class=\"ds-btn ds-btn-paper\" href=\"#\"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>",
+      "css": ".ds-btn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center; padding: 14px 44px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease; text-decoration: none; } .ds-btn strong { font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em; line-height: 1.3; } .ds-btn span { font-size: 10.5px; font-weight: 500; letter-spacing: 0.11em; text-transform: uppercase; opacity: 0.7; line-height: 1.4; } .ds-btn-paper { background: #fff; color: #101210; box-shadow: 0 10px 26px rgba(16,18,16,0.5), 0 0 20px rgba(255,255,255,0.16), inset 0 1px 0 rgba(255,255,255,0.9); } .ds-btn-paper:hover { box-shadow: 0 14px 32px rgba(16,18,16,0.55), 0 0 34px rgba(255,255,255,0.3), inset 0 1px 0 #fff; transform: translateY(-2px); } .ds-btn-paper:focus-visible { outline: 3px solid #101210; outline-offset: 3px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Method-section card: off-white panel on paper, skewed volt number tag, hairline border.",
+      "html": "<div class=\"ds-card\"><span class=\"ds-card-num\">01</span><h3>레이스처럼 훈련한다</h3><span class=\"ds-card-sub\">TRAIN THE WAY YOU RACE</span><p>실제 하이록스 경기와 동일한 구조로 훈련합니다.</p></div>",
+      "css": ".ds-card { background: #f7f8f3; border: 1px solid #e7e9e1; border-radius: 20px; padding: 30px 26px 34px; font-family: 'Pretendard Variable', Pretendard, sans-serif; } .ds-card-num { font-family: 'Oswald', 'Pretendard Variable', sans-serif; font-weight: 400; font-size: 15px; letter-spacing: 0.08em; color: #101210; background: #ffe100; display: inline-block; padding: 3px 10px; transform: skewX(-8deg); margin-bottom: 20px; } .ds-card h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: #101210; } .ds-card-sub { display: block; font-size: 13px; font-weight: 500; letter-spacing: 0.16em; color: #83887b; margin: 4px 0 14px; } .ds-card p { font-size: 14.5px; color: #43473f; margin: 0; }"
+    },
+    {
+      "name": "Offer Panel",
+      "kind": "card",
+      "refersTo": "offer-panel",
+      "description": "Signature ink-side comparison panel for the two coaching products, skewed badge, tick-marked list.",
+      "html": "<div class=\"ds-offer\"><span class=\"ds-offer-badge\">PRIMARY</span><h3>1:1 온라인 코칭</h3><span class=\"ds-offer-kr\">1:1 Online Coaching</span><p>개인맞춤형, 지속적인 원격 코칭.</p><ul><li>주간 프로그래밍</li><li>맞춤형 피드백</li></ul></div>",
+      "css": ".ds-offer { display: flex; flex-direction: column; background: #171913; color: #f2f4ec; border: 1px solid #2a2d26; border-radius: 20px; padding: 38px 32px; font-family: 'Pretendard Variable', Pretendard, sans-serif; transition: transform 0.2s ease, border-color 0.2s ease; } .ds-offer:hover { transform: translateY(-4px); border-color: #3a3e34; } .ds-offer-badge { align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #101210; background: #ffe100; padding: 5px 12px; transform: skewX(-8deg); margin-bottom: 22px; display: inline-block; } .ds-offer h3 { font-family: 'Oswald', 'Pretendard Variable', sans-serif; font-weight: 300; text-transform: uppercase; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.12; color: #fff; margin: 0; } .ds-offer-kr { font-size: 16px; font-weight: 500; margin-top: 6px; color: #d9dccf; display: block; } .ds-offer p { margin-top: 16px; font-size: 14.5px; color: #9aa093; } .ds-offer ul { list-style: none; margin: 22px 0 0; display: grid; gap: 10px; padding: 0; } .ds-offer li { font-size: 14px; color: #d9dccf; padding-left: 22px; position: relative; } .ds-offer li::before { content: ''; position: absolute; left: 2px; top: 5px; width: 7px; height: 13px; background: #ffe100; transform: skewX(-18deg); }"
+    },
+    {
+      "name": "Eyebrow Tag",
+      "kind": "custom",
+      "refersTo": "eyebrow",
+      "description": "The skewed volt tick + wide-tracked uppercase label used to introduce every section — the split motif at its smallest scale.",
+      "html": "<div class=\"ds-eyebrow\">HYROX KIM 온라인 코치</div>",
+      "css": ".ds-eyebrow { display: flex; align-items: center; gap: 10px; font-family: 'Pretendard Variable', Pretendard, sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: #83887b; } .ds-eyebrow::before { content: ''; width: 9px; height: 18px; background: #ffe100; transform: skewX(-18deg); flex: 0 0 auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Split",
+    "overview": "The system is built on one hard-edged division: ink versus paper. The cover is solid --ink, everything below it is --paper, and the seam between them is abrupt — no gradient, no grey band. That same cut reappears at the mark level as the −18° skewed slash in the wordmark, the eyebrow dash, the card number tags, and the offer badges: one consistent diagonal cut used everywhere something needs to be flagged or divided. Volt yellow is the only color allowed to cross the ink/paper boundary and mean the same thing on both sides — action, signal, the number.\n\nThe voice is restrained and technical rather than loud. Type runs light (Oswald 200 at display size, ramping up to 400 as it shrinks — a hairline face needs mass back at small sizes) so scale carries the energy instead of weight or color. Color is rationed: ink, paper, and one yellow, used with discipline rather than decoration. The one deliberate exception is the hero's primary CTA, which is lit — cast shadow, color bloom, a slow breathing glow — a single moment of warmth against an otherwise flat, quiet system, reserved for the one action the page most wants taken.",
+    "keyCharacteristics": [
+      "Two-tone base (ink/paper) with volt as the only accent, used sparingly and consistently",
+      "Condensed-light display type (Oswald 200→400 weight ramp) paired with Pretendard for Korean parity",
+      "The −18° skew as the one recurring geometric signature, applied to marks, tags, and badges — never to body content",
+      "Flat surfaces everywhere except the hero's primary CTA, which is the system's one lit, breathing element",
+      "Hard edges between color fields; no gradients, ever, between ink and paper"
+    ],
+    "rules": [
+      { "name": "The One Split Rule", "body": "Only two background fields exist anywhere on the site — ink and paper — and the transition between them is always a hard edge, never a gradient. If a section needs to feel distinct without leaving ink or paper, it uses paper-soft or a bordered panel, not a third background color.", "section": "colors" },
+      { "name": "The Volt Crossing Rule", "body": "Volt is the only color used identically on both the ink side and the paper side of the site. Every other color is scoped to one field (grey/muted/line exist only on paper; the offers panel's off-white text exists only on ink).", "section": "colors" },
+      { "name": "The Weight Ramp Rule", "body": "Display type gets lighter as it gets bigger: 200 at hero scale, 300 at section-headline scale, 400 and up at component scale. A hairline face needs mass back as it shrinks — never use a single static weight across all display sizes.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Every surface is flat at rest. Shadow and glow appear only on hover (buttons, generally) or as the hero primary CTA's standing, breathing exception — never as ambient decoration on cards, panels, or nav.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep volt to a single, consistent role (action + signal) — never use it as a decorative fill or a second neutral.",
+      "Do use the −18° skew for any new tag, badge, or divider mark; introducing a different angle breaks the one-signature rule.",
+      "Do keep display type weight inversely proportional to size — bigger type gets lighter, not heavier.",
+      "Do treat the ink/paper transition as a hard edge in any new section; if two adjacent sections are both \"light,\" differentiate with paper-soft + border, not a gradient."
+    ],
+    "donts": [
+      "Don't introduce a gradient between ink and paper anywhere — rejected three times for reading as a grey band, not craft.",
+      "Don't add ambient shadow or glow to cards, panels, or nav — flat-by-default is the rule; shadow is reserved for hover states and the one hero CTA exception.",
+      "Don't reach for a heavy display weight (700+) at hero or headline scale — Black Han Sans and Anton+900 Gothic A1 were both tried and rejected as too blocky for this voice.",
+      "Don't fake Korean condensation with a horizontal scale transform — match Latin condensation with weight/airiness in Pretendard instead."
+    ]
+  }
+}

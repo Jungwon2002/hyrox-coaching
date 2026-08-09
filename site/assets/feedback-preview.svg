@@ -1,0 +1,52 @@
+<svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="코치와의 피드백 대화를 보여주는 앱 화면 예시">
+  <defs>
+    <clipPath id="screen-clip-2">
+      <rect x="6" y="6" width="268" height="388" rx="24"/>
+    </clipPath>
+  </defs>
+
+  <rect x="0" y="0" width="280" height="400" rx="30" fill="#101210"/>
+
+  <g clip-path="url(#screen-clip-2)">
+    <rect x="6" y="6" width="268" height="388" fill="#F7F8F3"/>
+
+    <!-- status bar -->
+    <text x="26" y="34" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11" font-weight="600" fill="#101210">9:41</text>
+    <rect x="233" y="26" width="19" height="9" rx="2.5" fill="none" stroke="#101210" stroke-width="1"/>
+    <rect x="253" y="28.5" width="1.6" height="4" rx="0.8" fill="#101210"/>
+    <rect x="236" y="28" width="13" height="5" rx="1.2" fill="#101210"/>
+
+    <!-- chat header -->
+    <path d="M28 62l-5 5 5 5" stroke="#101210" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="52" cy="67" r="12" fill="#101210"/>
+    <text x="52" y="71" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#FFE100">김</text>
+    <text x="72" y="65" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="700" fill="#101210">코치 김중원</text>
+    <circle cx="76" cy="75" r="3" fill="#3FB65A"/>
+    <text x="83" y="78" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="9" fill="#83887B">온라인</text>
+
+    <line x1="26" y1="94" x2="254" y2="94" stroke="#E7E9E1" stroke-width="1"/>
+
+    <!-- athlete message (right) -->
+    <rect x="80" y="112" width="174" height="32" rx="14" fill="#101210"/>
+    <text x="167" y="132" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#F7F8F3">오늘 운동 완료했습니다!</text>
+    <text x="254" y="156" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="9" fill="#83887B">오후 3:24</text>
+
+    <!-- coach reply 1 (left) -->
+    <rect x="26" y="172" width="164" height="32" rx="14" fill="#FFFFFF" stroke="#E7E9E1" stroke-width="1"/>
+    <text x="42" y="192" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#101210">폼 영상 잘 봤어요, 좋습니다!</text>
+
+    <!-- coach reply 2 (left, two lines) -->
+    <rect x="26" y="214" width="192" height="50" rx="14" fill="#FFFFFF" stroke="#E7E9E1" stroke-width="1"/>
+    <text x="42" y="234" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#101210">다음 세트는 템포를 조금 더</text>
+    <text x="42" y="250" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="11.5" font-weight="500" fill="#101210">천천히 가져가볼까요?</text>
+
+    <line x1="26" y1="300" x2="254" y2="300" stroke="#E7E9E1" stroke-width="1"/>
+
+    <!-- next check-in chip -->
+    <rect x="26" y="318" width="228" height="36" rx="10" fill="#101210"/>
+    <text x="40" y="336" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="9.5" font-weight="600" letter-spacing="0.4" fill="#FFE100">다음 체크인 콜</text>
+    <text x="40" y="349" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10.5" font-weight="500" fill="#F7F8F3">금요일 오후 8시</text>
+  </g>
+
+  <rect x="1" y="1" width="278" height="398" rx="29" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+</svg>

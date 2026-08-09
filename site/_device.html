@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYROX KIM — 모바일 미리보기 · Device Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #16181a;
+    color: #e9ebe6;
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+      "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+    padding: 24px 20px 56px;
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #202327;
+    border: 1px solid #32363b;
+    border-radius: 14px;
+  }
+
+  .bar label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8b9088;
+    margin-right: 2px;
+  }
+
+  select, button {
+    font: inherit;
+    font-size: 13px;
+    color: #e9ebe6;
+    background: #2a2e33;
+    border: 1px solid #3d4249;
+    border-radius: 9px;
+    padding: 7px 11px;
+    cursor: pointer;
+  }
+
+  button:hover, select:hover { border-color: #5a6069; }
+
+  button.go {
+    background: #ffe100;
+    color: #101210;
+    border-color: #ffe100;
+    font-weight: 700;
+  }
+
+  .sep { width: 1px; height: 22px; background: #3d4249; }
+
+  /* the phone */
+  .stage { display: flex; justify-content: center; }
+
+  .phone {
+    position: relative;
+    background: #0a0b0c;
+    border: 10px solid #2b2f34;
+    border-radius: 44px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+    transform-origin: top center;
+  }
+
+  .phone iframe {
+    display: block;
+    border: 0;
+    border-radius: 34px;
+    background: #fff;
+  }
+
+  .meta {
+    font-size: 12px;
+    color: #7d827a;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .meta b { color: #b9beb4; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <label for="page">Page</label>
+  <select id="page">
+    <option value="index.html">홈 · Home</option>
+    <option value="program.html">4주 프로그램 · Programme</option>
+    <option value="coaching.html">1:1 코칭 · Coaching</option>
+    <option value="_variants.html">색상 시안 · Colour variants</option>
+    <option value="_krfonts.html">한글 서체 시안 · Korean faces</option>
+    <option value="_highlight.html">강조 스타일 시안 · Highlight styles</option>
+    <option value="_lede.html">클로징 문구 시안 · Closing line styles</option>
+  </select>
+
+  <span class="sep"></span>
+
+  <label for="device">Device</label>
+  <select id="device">
+    <option value="390x844">iPhone 14 / 15 — 390 × 844</option>
+    <option value="375x667">iPhone SE — 375 × 667</option>
+    <option value="430x932">iPhone Pro Max — 430 × 932</option>
+    <option value="412x915">Pixel 8 — 412 × 915</option>
+    <option value="360x780">Galaxy S — 360 × 780</option>
+  </select>
+
+  <span class="sep"></span>
+
+  <button id="coach">→ Coach 섹션</button>
+  <button id="top">↑ 맨 위</button>
+  <button class="go" id="reload">새로고침 · Reload</button>
+</div>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <iframe id="frame" src="index.html" title="모바일 미리보기"></iframe>
+  </div>
+</div>
+
+<p class="meta">
+  실제 휴대폰에서 보려면 같은 와이파이에서 <b id="lan">http://172.30.89.64:4173</b> 접속<br>
+  To view on your real phone, open that address on the same Wi-Fi.
+</p>
+
+<script>
+  var frame  = document.getElementById("frame");
+  var phone  = document.getElementById("phone");
+  var pageEl = document.getElementById("page");
+  var devEl  = document.getElementById("device");
+
+  function applyDevice() {
+    var d = devEl.value.split("x");
+    var w = parseInt(d[0], 10);
+    var h = parseInt(d[1], 10);
+    frame.style.width  = w + "px";
+    frame.style.height = h + "px";
+    // shrink to fit the laptop window if the phone is taller than the viewport
+    var room = window.innerHeight - 190;
+    var scale = Math.min(1, room / (h + 20));
+    phone.style.transform = "scale(" + scale.toFixed(3) + ")";
+    document.querySelector(".stage").style.height = (h + 20) * scale + "px";
+  }
+
+  // same-origin, so we can scroll the framed page directly — a plain #hash
+  // fires before the page has finished laying out and lands in the wrong place
+  function scrollTo(sel) {
+    var win = frame.contentWindow;
+    var el = sel ? frame.contentDocument.querySelector(sel) : null;
+    var y = el ? el.getBoundingClientRect().top + win.scrollY : 0;
+    // instant, not smooth: a long smooth scroll gets cancelled by the framed
+    // page's own scroll-behavior and lands short
+    frame.contentDocument.documentElement.style.scrollBehavior = "auto";
+    win.scrollTo(0, y);
+  }
+
+  function show(page, sel) {
+    var current = frame.getAttribute("src").split("#")[0];
+    if (current !== page) {
+      frame.setAttribute("src", page);
+      frame.addEventListener("load", function once() {
+        frame.removeEventListener("load", once);
+        setTimeout(function () { scrollTo(sel); }, 60);
+      });
+    } else {
+      scrollTo(sel);
+    }
+  }
+
+  devEl.addEventListener("change", applyDevice);
+  window.addEventListener("resize", applyDevice);
+
+  pageEl.addEventListener("change", function () { show(pageEl.value, null); });
+
+  document.getElementById("reload").addEventListener("click", function () {
+    frame.contentWindow.location.reload();
+  });
+
+  document.getElementById("coach").addEventListener("click", function () {
+    pageEl.value = "index.html";
+    show("index.html", "#coach");
+  });
+
+  document.getElementById("top").addEventListener("click", function () {
+    scrollTo(null);
+  });
+
+  applyDevice();
+</script>
+
+</body>
+</html>

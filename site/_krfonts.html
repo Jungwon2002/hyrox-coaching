@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한글 서체 시안 — HYROX KIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200;300;400;500&family=IBM+Plex+Sans+KR:wght@200;300;400;500&family=Gothic+A1:wght@200;300;400;500&family=Noto+Sans+KR:wght@200;300;400;500&family=Sunflower:wght@300;500&family=Do+Hyeon&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { background: var(--ink); color: #f2f4ec; }
+
+  .head {
+    padding: 34px 0 26px;
+    border-bottom: 1px solid #2a2d26;
+  }
+  .head p { color: #9aa093; font-size: 13.5px; line-height: 1.8; }
+  .head b { color: #fff; font-weight: 500; }
+
+  .spec {
+    padding: 40px 0 44px;
+    border-bottom: 1px solid #2a2d26;
+  }
+
+  .spec__tag {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .spec__tag b {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 30px;
+    letter-spacing: 0.03em;
+    color: var(--volt);
+  }
+  .spec__tag i {
+    font-style: normal;
+    font-size: 12.5px;
+    color: #9aa093;
+  }
+
+  /* the sample uses the site's real rules; only the Korean face swaps */
+  .sample .hero-dark__kicker,
+  .sample .hero-dark__kr,
+  .sample .btn strong { font-family: var(--kr), sans-serif; }
+
+  .sample .hero-dark__kicker { margin-bottom: 14px; }
+
+  .sample h1 {
+    font-family: var(--font-display);
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: clamp(38px, 5.6vw, 62px);
+    line-height: 1.02;
+    letter-spacing: 0.005em;
+    color: #fff;
+  }
+  .sample h1 em { font-style: normal; color: var(--volt); }
+  .sample .btn-row { margin-top: 26px; }
+
+  .f-pretendard { --kr: "Pretendard Variable"; }
+  .f-plex       { --kr: "IBM Plex Sans KR"; }
+  .f-gothic     { --kr: "Gothic A1"; }
+  .f-noto       { --kr: "Noto Sans KR"; }
+  .f-sunflower  { --kr: "Sunflower"; }
+  .f-dohyeon    { --kr: "Do Hyeon"; }
+  .f-gowun      { --kr: "Gowun Dodum"; }
+
+  /* Do Hyeon and Gowun Dodum ship a single weight; asking for 300/600 would
+     make the browser fake one, so these two opt out of the weight ramp */
+  .f-dohyeon .hero-dark__kicker,
+  .f-dohyeon .hero-dark__kr,
+  .f-dohyeon .btn strong,
+  .f-gowun .hero-dark__kicker,
+  .f-gowun .hero-dark__kr,
+  .f-gowun .btn strong { font-weight: 400; font-synthesis-weight: none; }
+</style>
+</head>
+<body>
+
+<div class="shell head">
+  <p>
+    <b>한글 서체 7종 비교.</b> 영문은 전부 Oswald 200으로 동일하고, 한글만 바뀝니다.<br>
+    아이브로우 · 태그라인 · 버튼 라벨 세 곳에 동시에 적용했습니다. 번호를 알려주시면 그대로 반영합니다.<br>
+    <b>Seven Korean faces</b> against the same Oswald 200 Latin. Only the Korean changes.
+  </p>
+</div>
+
+<div class="shell spec sample f-pretendard">
+  <div class="spec__tag"><b>1 · Pretendard</b><i>현재 사용 중 · 균형 잡힌 기본값</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-plex">
+  <div class="spec__tag"><b>2 · IBM Plex Sans KR</b><i>세로로 길고 좁은 편 · 라틴과 한 가족</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-sunflower">
+  <div class="spec__tag"><b>3 · Sunflower</b><i>얇고 좁음 · 가장 가벼운 인상</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-dohyeon">
+  <div class="spec__tag"><b>4 · Do Hyeon</b><i>유일하게 진짜 콘덴스드 · 굵기 한 종류뿐</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-gowun">
+  <div class="spec__tag"><b>5 · Gowun Dodum</b><i>담백하고 여백이 많음 · 굵기 한 종류</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-noto">
+  <div class="spec__tag"><b>6 · Noto Sans KR</b><i>가장 중립적 · 본문에 안전</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+<div class="shell spec sample f-gothic">
+  <div class="spec__tag"><b>7 · Gothic A1</b><i>가장 넓고 둥근 편 · 이전에 쓰던 서체</i></div>
+  <p class="hero-dark__kicker">HYROX Kim 온라인 코치</p>
+  <h1><span class="line">Train <em>Smarter.</em></span></h1>
+  <p class="hero-dark__kr">훈련은 더 똑똑하게. 레이스는 더 강하게.</p>
+  <div class="btn-row">
+    <a class="btn btn--volt" href="#"><strong>하이록스 4주 프로그램</strong><span>HYROX 4-Week Programme</span></a>
+    <a class="btn btn--paper" href="#"><strong>1:1 온라인 코칭 신청하기</strong><span>Apply for 1:1 Online Coaching</span></a>
+  </div>
+</div>
+
+</body>
+</html>

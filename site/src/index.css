@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Tailwind v4 CSS-first theme: only what the shadcn-style components need
+   (bg-background, bg-primary, text-primary-foreground, border), mapped to
+   HYROX KIM's real tokens rather than shadcn's default neutral palette.
+   The rest of the site's styling stays in style.css, loaded separately. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+}
+
+:root {
+  --background: #101210;
+  --foreground: #ffffff;
+  --primary: #ffe100;
+  --primary-foreground: #101210;
+  --border: transparent;
+}
