@@ -56,12 +56,12 @@ export default function Coach() {
 
       <div className="shell">
         <div className="coach__prose reveal">
-          <p className="coach__prose-slash">
+          <p className="coach__slash">
             저는 중국에서 초·중·고등학교를 졸업한 뒤, 스포츠 전공 세계 1위인
             영국 러프버러 대학교(Loughborough University)에서 스포츠 매니지먼트를
             전공하며 학사 과정을 마쳤습니다.
           </p>
-          <p className="coach__prose-align">
+          <p className="coach__slash-align">
             현재는 영국 명문 UCL(University College London)에서 경영학 석사 과정을
             공부하고 있으며, 하이록스 프로 싱글 부문에서 꾸준히 경쟁하며 월드
             챔피언십 진출을 목표로 훈련하고 있습니다.
@@ -106,12 +106,12 @@ export default function Coach() {
             backdropFilter: "blur(12px)",
           }}
         >
-          <p>
+          <p className="coach__slash">
             <strong>HYROX</strong>는 한국에서 빠르게 성장하고 있지만, 아직은 비교적
             새로운 스포츠입니다. 온라인에는 다양한 훈련 정보가 있지만, 체계적인
             계획 없이 접근하는 경우가 많습니다.
           </p>
-          <p>
+          <p className="coach__slash-align">
             현재 한국인들을 위한 전문적인 온라인 하이록스 코칭은 거의 없습니다.
             저는 우리나라 선수들이 더 체계적이고 효율적으로 훈련할 수 있도록
             돕고자 합니다.

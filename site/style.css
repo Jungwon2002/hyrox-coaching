@@ -931,12 +931,15 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   .coach__prose p { max-width: 82ch; }
 }
 
-.coach__prose-slash {
+/* Shared by both glass cards — the bio prose and the mission below it — so the
+   opening slash reads identically in each. `-align` indents following
+   paragraphs to the same left edge. */
+.coach__slash {
   position: relative;
   padding-left: 22px;
 }
 
-.coach__prose-slash::before {
+.coach__slash::before {
   content: "";
   position: absolute;
   left: 0;
@@ -947,7 +950,7 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   transform: skewX(-14deg);
 }
 
-.coach__prose-align { padding-left: 22px; }
+.coach__slash-align { padding-left: 22px; }
 
 /* cert: sits inside the prose glass card between bio text and mission.
    Stacked and centred at every width — image above label. A left-aligned
@@ -1044,23 +1047,11 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
 
 .coach__mission p + p { margin-top: 12px; }
 
+/* HYROX carries weight only — the opening slash is the volt accent here, the
+   same as in the bio card above. A highlight block as well would double up. */
 .coach__mission strong {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  font-style: normal;
   font-weight: 700;
-  font-size: 1.2em;
   color: var(--ink);
-}
-
-.coach__mission strong::before {
-  content: "";
-  position: absolute;
-  inset: 0.06em -0.12em 0.02em -0.12em;
-  background: var(--volt);
-  transform: skewX(-8deg);
-  z-index: -1;
 }
 
 .coach__creds {
