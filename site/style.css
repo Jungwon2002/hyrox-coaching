@@ -1117,9 +1117,34 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
 /* photo carousel: drag-to-spin 3D cylinder (see ui/3d-carousel.tsx). This
    wrapper only owns the section's vertical rhythm — sizing, rotation and
    the click-to-zoom lightbox all live in the component itself. */
-.coach__carousel {
+/* Full-bleed strip of five. Fixed five columns at every width — the brief was
+   that all five stay visible on a phone, so they narrow rather than wrap or
+   scroll. Height is set on the band and the photos cover it, so the frame is
+   always filled edge to edge with no letterbox bars. */
+.coach__band {
   margin-top: clamp(2px, 0.5vw, 6px);
-  padding: clamp(4px, 1vw, 10px) 0 clamp(12px, 2vw, 20px);
+  margin-bottom: clamp(12px, 2vw, 20px);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  background: var(--ink);
+  height: clamp(190px, 21vw, 340px);
+}
+
+.coach__band img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* one tone across all five so the strip reads as a single band */
+  filter: saturate(0.85) brightness(0.93) contrast(1.04);
+}
+
+@media (max-width: 640px) {
+  .coach__band {
+    gap: 2px;
+    height: 168px;
+  }
 }
 
 /* the section's one authored moment: the slab wipes in under the phrase */

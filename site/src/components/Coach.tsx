@@ -1,4 +1,3 @@
-import { ThreeDPhotoCarousel, type CarouselItem } from "@/components/ui/3d-carousel";
 import { GradientShimmer, type GradientStop } from "@/components/ui/gradient-shimmer";
 import { BorderBeamPanel } from "@/components/ui/border-beam-panel";
 
@@ -11,16 +10,15 @@ const shimmerBrand: GradientStop[] = [
   { color: "#101210", position: 1 },
 ];
 
-const coachPhotos: CarouselItem[] = [
-  {
-    src: "assets/coach/coach-3-flags.jpg",
-    alt: "HYROX HONG KONG 대회 현장",
-    filter: "saturate(0.82) brightness(0.95)",
-  },
+// Five across, Hong Kong flags in the middle — the one shot with faces in it
+// earns the centre. A single tone filter is applied in CSS to all of them so
+// the strip reads as one band rather than five separate pictures.
+const coachPhotos = [
+  { src: "assets/coach/coach-1-jump.jpg", alt: "레이스 훈련 중 점프 동작" },
+  { src: "assets/coach/coach-2-track.jpg", alt: "트랙 러닝 훈련" },
+  { src: "assets/coach/coach-3-flags.jpg", alt: "HYROX HONG KONG 대회 현장" },
   { src: "assets/coach/coach-4-gym.jpg", alt: "체육관 웨이트 트레이닝" },
   { src: "assets/coach/coach-5-ergo.jpg", alt: "스키에르그 훈련" },
-  { src: "assets/coach/coach-1-jump.jpg", alt: "레이스 훈련 중 점프 동작" },
-  { src: "assets/coach/coach-2-track.jpg?v=5", alt: "트랙 러닝 훈련" },
 ];
 
 export default function Coach() {
@@ -50,8 +48,10 @@ export default function Coach() {
         </div>
       </div>
 
-      <div className="coach__carousel reveal">
-        <ThreeDPhotoCarousel items={coachPhotos} />
+      <div className="coach__band reveal">
+        {coachPhotos.map((p) => (
+          <img key={p.src} src={p.src} alt={p.alt} loading="lazy" />
+        ))}
       </div>
 
       <div className="shell">
