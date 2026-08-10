@@ -79,7 +79,7 @@ document.documentElement.classList.add("js");
       "목표 대회 / Target race: " + v("f-race"),
     ].join("\n");
     const url =
-      "mailto:j15611943893@gmail.com" +
+      "mailto:coachkimjungwon@gmail.com" +
       "?subject=" + encodeURIComponent("[HYROX KIM] 1:1 코칭 신청 — " + v("f-name")) +
       "&body=" + encodeURIComponent(body);
     window.location.href = url;

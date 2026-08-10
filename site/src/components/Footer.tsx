@@ -9,7 +9,7 @@ export default function Footer() {
         </a>
         <p className="foot__meta">
           © 2026 HYROX KIM ·{" "}
-          <a href="mailto:j15611943893@gmail.com">j15611943893@gmail.com</a>
+          <a href="mailto:coachkimjungwon@gmail.com">coachkimjungwon@gmail.com</a>
         </p>
       </div>
     </footer>
