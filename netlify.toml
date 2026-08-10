@@ -8,3 +8,7 @@
 # and pinning keeps CI from drifting off a version we've verified.
 [build.environment]
   NODE_VERSION = "22"
+
+# Also relative to base, so this is site/netlify/functions
+[functions]
+  directory = "netlify/functions"

@@ -61,27 +61,94 @@ document.documentElement.classList.add("js");
   io.observe(hero);
 })();
 
-// Coaching application → opens a pre-filled email
+// Coaching application → posted straight to Netlify Forms.
+// Submitted over fetch rather than a page navigation so the visitor stays put
+// and gets an answer in place. This replaced a mailto: handoff, which silently
+// did nothing on phones with no mail app configured and inside the in-app
+// browsers that Instagram links open in.
 (function () {
   const form = document.getElementById("apply-form");
   if (!form) return;
-  form.addEventListener("submit", (e) => {
+  const note = form.querySelector(".form-note");
+  const button = form.querySelector("button[type=submit]");
+  const say = (msg) => { if (note) note.textContent = msg; };
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const v = (id) => (document.getElementById(id).value || "-").trim();
-    const body = [
-      "[HYROX KIM 1:1 코칭 신청 / Coaching Application]",
-      "",
-      "이름 / Name: " + v("f-name"),
-      "이메일 / Email: " + v("f-email"),
-      "인스타그램 / Instagram: " + v("f-instagram"),
-      "필요한 도움 / Needs help with: " + v("f-help"),
-      "체력 수준 / Fitness level: " + v("f-fitness"),
-      "목표 대회 / Target race: " + v("f-race"),
-    ].join("\n");
-    const url =
-      "mailto:coachkimjungwon@gmail.com" +
-      "?subject=" + encodeURIComponent("[HYROX KIM] 1:1 코칭 신청 — " + v("f-name")) +
-      "&body=" + encodeURIComponent(body);
-    window.location.href = url;
+    if (!form.reportValidity()) return;
+
+    const original = note ? note.textContent : "";
+    if (button) button.disabled = true;
+    say("보내는 중…");
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      say("신청서가 접수되었습니다. 24–48시간 내에 답변드리겠습니다. 감사합니다!");
+    } catch {
+      if (button) button.disabled = false;
+      say(
+        "전송에 실패했습니다. 잠시 후 다시 시도하시거나 " +
+          "coachkimjungwon@gmail.com 으로 보내주세요."
+      );
+      setTimeout(() => say(original), 8000);
+    }
+  });
+})();
+
+// Programme request → serverless function emails the PDF to the visitor and
+// tells the coach a lead came in. The download link stays in the success
+// message as a fallback, so nobody is stuck waiting on an inbox.
+(function () {
+  const form = document.getElementById("programme-form");
+  if (!form) return;
+  const msg = form.querySelector(".get-form__msg");
+  const button = form.querySelector("button[type=submit]");
+  const PDF = "assets/hyrox-4-week-programme.pdf";
+
+  const say = (html, isError) => {
+    if (!msg) return;
+    msg.innerHTML = html;
+    msg.classList.toggle("get-form__msg--error", !!isError);
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    form.classList.add("is-sending");
+    if (button) button.disabled = true;
+    say("보내는 중…");
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch("/.netlify/functions/send-programme", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error(await res.text());
+      form.reset();
+      say(
+        "메일함을 확인해 주세요. 프로그램을 보내드렸습니다. " +
+          `메일이 오지 않으면 <a href="${PDF}" download>여기서 바로 받으실 수 있습니다</a>.`
+      );
+    } catch {
+      // The send failed, but the programme is free — hand it over anyway
+      // rather than turning someone away over a mail problem.
+      say(
+        `메일 전송에 실패했습니다. <a href="${PDF}" download>여기서 바로 다운로드하세요</a>.`,
+        true
+      );
+    } finally {
+      form.classList.remove("is-sending");
+      if (button) button.disabled = false;
+    }
   });
 })();
