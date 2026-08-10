@@ -1177,7 +1177,9 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
 
   .coach__band img:nth-child(1) { transform: rotate(-7deg) translateY(8px) scale(0.94); z-index: 1; }
   .coach__band img:nth-child(2) { transform: rotate(-3.5deg) translateY(3px) scale(0.97); z-index: 2; }
-  .coach__band img:nth-child(3) { height: 88%; transform: scale(1.04); z-index: 3; }
+  /* wider only — same height as its neighbours. Widening via flex-grow rather
+     than a scale keeps the photo undistorted and lets object-fit re-crop it. */
+  .coach__band img:nth-child(3) { flex-grow: 1.45; z-index: 3; }
   .coach__band img:nth-child(4) { transform: rotate(3.5deg) translateY(3px) scale(0.97); z-index: 2; }
   .coach__band img:nth-child(5) { transform: rotate(7deg) translateY(8px) scale(0.94); z-index: 1; }
 }
