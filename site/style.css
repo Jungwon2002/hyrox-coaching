@@ -1126,9 +1126,11 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   margin-bottom: clamp(12px, 2vw, 20px);
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 100%;
   gap: 4px;
   background: var(--ink);
   height: clamp(190px, 21vw, 340px);
+  overflow: hidden;
 }
 
 .coach__band img {
@@ -1136,15 +1138,48 @@ html.js .hero-dark__kr.is-in em { color: var(--volt); }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Grid items default to min-height:auto, so a portrait source refuses to
+     shrink below its intrinsic height — the Hong Kong shot grew the row to
+     380px inside a 302px band and hung out underneath, where the bio card
+     painted over it. Letting it shrink hands the cropping back to
+     object-fit, which is what should be doing the work. */
+  min-height: 0;
+  min-width: 0;
   /* one tone across all five so the strip reads as a single band */
   filter: saturate(0.85) brightness(0.93) contrast(1.04);
 }
 
+/* Phone: five 73px slivers in a hard row read as compressed, so the strip
+   becomes a shallow fan — ends tilted and dropped, centre lifted and enlarged.
+   Flex with negative margins lets the cards overlap, which is what stops the
+   tilt from opening white wedges between them. Background goes transparent
+   here so the fan sits on the page rather than in a dark box. */
 @media (max-width: 640px) {
   .coach__band {
-    gap: 2px;
-    height: 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    height: 226px;
+    background: transparent;
+    padding: 0 14px;
   }
+
+  .coach__band img {
+    flex: 1 1 0;
+    height: 68%;
+    position: relative;
+    border-radius: 9px;
+    margin-inline: -4px;
+    transform-origin: 50% 100%;
+    box-shadow: 0 8px 20px rgba(16, 18, 16, 0.28);
+  }
+
+  .coach__band img:nth-child(1) { transform: rotate(-7deg) translateY(8px) scale(0.94); z-index: 1; }
+  .coach__band img:nth-child(2) { transform: rotate(-3.5deg) translateY(3px) scale(0.97); z-index: 2; }
+  .coach__band img:nth-child(3) { height: 88%; transform: scale(1.04); z-index: 3; }
+  .coach__band img:nth-child(4) { transform: rotate(3.5deg) translateY(3px) scale(0.97); z-index: 2; }
+  .coach__band img:nth-child(5) { transform: rotate(7deg) translateY(8px) scale(0.94); z-index: 1; }
 }
 
 /* the section's one authored moment: the slab wipes in under the phrase */
