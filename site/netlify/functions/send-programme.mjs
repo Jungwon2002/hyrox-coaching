@@ -95,9 +95,7 @@ export default async (request) => {
       html: `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.65;color:#101210">
           <p>${greeting}안녕하세요. HYROX KIM입니다.</p>
-          <p>신청해 주신 <strong>HYROX 4주 프로그램</strong>을 첨부해 드립니다.
-             초급·중급·상급 3가지 레벨과 테이퍼 주간까지 포함되어 있습니다.</p>
-          <p>훈련 중 궁금한 점이 있으면 이 메일에 그대로 답장 주세요.</p>
+          <p>신청해 주신 <strong>HYROX 4주 프로그램</strong>을 첨부해 드립니다.</p>
           <p style="color:#83887b;font-size:13px;margin-top:26px">HYROX KIM · 온라인 코칭</p>
         </div>`,
       attachments: [{ filename: "HYROX-4-Week-Programme.pdf", content: pdf }],
