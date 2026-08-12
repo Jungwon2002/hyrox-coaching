@@ -127,6 +127,15 @@ document.documentElement.classList.add("js");
 
     const data = Object.fromEntries(new FormData(form));
 
+    // Record the request in Netlify Forms first, so it is counted in the
+    // dashboard whether or not the email goes out. Fire and forget — a
+    // logging failure must never cost someone their programme.
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ "form-name": "programme-request", ...data }).toString(),
+    }).catch(() => {});
+
     try {
       const res = await fetch("/.netlify/functions/send-programme", {
         method: "POST",

@@ -90,6 +90,17 @@
     </div>
   </section>
 
+  <!-- Netlify discovers forms by parsing the deployed HTML, so this hidden
+       twin exists purely to register "programme-request". The real form is
+       submitted with fetch, which posts against this name — that way every
+       request is counted in the Forms dashboard even if the email send
+       happens to fail. -->
+  <form name="programme-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input name="bot-field">
+  </form>
+
 </main>
 
 <footer>
