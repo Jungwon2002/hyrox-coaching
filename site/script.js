@@ -102,18 +102,18 @@ document.documentElement.classList.add("js");
 })();
 
 // Programme request → serverless function emails the PDF to the visitor and
-// tells the coach a lead came in. The download link stays in the success
-// message as a fallback, so nobody is stuck waiting on an inbox.
+// tells the coach a lead came in. Email is the only route to the programme —
+// the file is not published anywhere on the site, so there is deliberately no
+// download link here to fall back on.
 (function () {
   const form = document.getElementById("programme-form");
   if (!form) return;
   const msg = form.querySelector(".get-form__msg");
   const button = form.querySelector("button[type=submit]");
-  const PDF = "assets/hyrox-4-week-programme.pdf";
 
-  const say = (html, isError) => {
+  const say = (text, isError) => {
     if (!msg) return;
-    msg.innerHTML = html;
+    msg.textContent = text;
     msg.classList.toggle("get-form__msg--error", !!isError);
   };
 
@@ -137,13 +137,12 @@ document.documentElement.classList.add("js");
       form.reset();
       say(
         "메일함을 확인해 주세요. 프로그램을 보내드렸습니다. " +
-          `메일이 오지 않으면 <a href="${PDF}" download>여기서 바로 받으실 수 있습니다</a>.`
+          "메일이 보이지 않으면 스팸함도 확인해 주세요."
       );
     } catch {
-      // The send failed, but the programme is free — hand it over anyway
-      // rather than turning someone away over a mail problem.
       say(
-        `메일 전송에 실패했습니다. <a href="${PDF}" download>여기서 바로 다운로드하세요</a>.`,
+        "전송에 실패했습니다. 이메일 주소를 확인 후 다시 시도해 주세요. " +
+          "문제가 계속되면 coachkimjungwon@gmail.com 으로 연락 주세요.",
         true
       );
     } finally {

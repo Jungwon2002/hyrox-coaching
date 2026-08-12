@@ -18,10 +18,36 @@
 //   GMAIL_USER         — defaults to the address below.
 
 import nodemailer from "nodemailer";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const COACH = process.env.GMAIL_USER || "coachkimjungwon@gmail.com";
-const PDF_PATH = "/assets/hyrox-4-week-programme.pdf";
 const SENDER = `HYROX KIM <${COACH}>`;
+const PDF_NAME = "hyrox-4-week-programme.pdf";
+
+// The PDF lives in site/private, which is bundled with this function via
+// included_files but never published, so there is no URL anyone can hit — the
+// only way to get it is to be sent it. Netlify does not guarantee which
+// directory the bundle unpacks into, so try the plausible roots.
+async function loadProgramme() {
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    path.join(process.cwd(), "private", PDF_NAME),
+    path.join(here, "private", PDF_NAME),
+    path.join(here, "..", "..", "private", PDF_NAME),
+    path.join(process.env.LAMBDA_TASK_ROOT || "", "private", PDF_NAME),
+  ];
+  const tried = [];
+  for (const file of candidates) {
+    try {
+      return await readFile(file);
+    } catch {
+      tried.push(file);
+    }
+  }
+  throw new Error(`programme file not found. Looked in: ${tried.join(", ")}`);
+}
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
@@ -63,16 +89,9 @@ export default async (request) => {
   email = String(email).trim().slice(0, 200);
   if (!looksLikeEmail(email)) return json(400, { error: "That email address looks wrong" });
 
-  const origin = new URL(request.url).origin;
-  const pdfUrl = origin + PDF_PATH;
-
-  // Pull the PDF once and attach the bytes, rather than letting the mail
-  // client fetch a link — an attachment is what was actually promised.
   let pdf;
   try {
-    const res = await fetch(pdfUrl);
-    if (!res.ok) throw new Error(`PDF fetch returned ${res.status}`);
-    pdf = Buffer.from(await res.arrayBuffer());
+    pdf = await loadProgramme();
   } catch (err) {
     return json(502, { error: `Could not read the programme file: ${err.message}` });
   }

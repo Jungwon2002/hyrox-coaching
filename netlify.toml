@@ -12,3 +12,6 @@
 # Also relative to base, so this is site/netlify/functions
 [functions]
   directory = "netlify/functions"
+  # The programme PDF is bundled into the function but deliberately kept out of
+  # the published site, so the only way to obtain it is to have it emailed.
+  included_files = ["private/**"]
