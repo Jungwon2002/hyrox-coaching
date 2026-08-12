@@ -61,7 +61,7 @@ document.documentElement.classList.add("js");
   io.observe(hero);
 })();
 
-// Coaching application → posted straight to Netlify Forms.
+// Coaching application → recorded in Netlify Forms and emailed to the coach.
 // Submitted over fetch rather than a page navigation so the visitor stays put
 // and gets an answer in place. This replaced a mailto: handoff, which silently
 // did nothing on phones with no mail app configured and inside the in-app
@@ -80,6 +80,18 @@ document.documentElement.classList.add("js");
     const original = note ? note.textContent : "";
     if (button) button.disabled = true;
     say("보내는 중…");
+
+    const data = Object.fromEntries(new FormData(form));
+
+    // Mail it to the coach directly, so an application lands in the inbox
+    // rather than waiting to be noticed in a dashboard. Fire and forget: the
+    // Netlify Forms record below is the one that must not be lost, so a mail
+    // failure should not fail the submission for the applicant.
+    fetch("/.netlify/functions/send-application", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).catch(() => {});
 
     try {
       const res = await fetch("/", {
